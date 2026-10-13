@@ -1,5 +1,5 @@
-CXX=g++ -m64 -march=native
-CXXFLAGS=-I../common -Iobjs/ -O3 -Wall
+CXX=clang++
+CXXFLAGS=-I../common -Iobjs/ -O3 -std=c++11 -Wall
 
 
 APP_NAME=kmeans
