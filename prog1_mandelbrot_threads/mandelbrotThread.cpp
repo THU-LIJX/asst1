@@ -30,7 +30,7 @@ extern void mandelbrotSerial(
 //
 // Thread entrypoint.
 void workerThreadStart(WorkerArgs * const args) {
-    const double startSeconds = args->timing ? CycleTimer::currentSeconds() : 0.0;
+    // const double startSeconds = args->timing ? CycleTimer::currentSeconds() : 0.0;
 
     // TODO FOR CS149 STUDENTS: Implement the body of the worker
     // thread here. Each thread should make a call to mandelbrotSerial()
@@ -38,36 +38,26 @@ void workerThreadStart(WorkerArgs * const args) {
     // program that uses two threads, thread 0 could compute the top
     // half of the image and thread 1 could compute the bottom half.
 
-    int rowsPerThread = args->height / args->numThreads;
-    int remainderRows = args->height % args->numThreads;
-
-    int startRow = args->threadId * rowsPerThread;
-    int totalRows;
-    if (args->threadId != args->numThreads - 1) {
-        totalRows = rowsPerThread;
-    } else {
-        totalRows = rowsPerThread + remainderRows;
+    for (int i=args->threadId; i<args->height; i+=args->numThreads) {
+        mandelbrotSerial(
+            args->x0,
+            args->y0,
+            args->x1,
+            args->y1,
+            args->width,
+            args->height,
+            i,
+            1,
+            args->maxIterations,
+            args->output
+        );
     }
 
-
-    mandelbrotSerial(
-        args->x0,
-        args->y0,
-        args->x1,
-        args->y1,
-        args->width,
-        args->height,
-        startRow,
-        totalRows,
-        args->maxIterations,
-        args->output
-    );
-
-    if (args->timing) {
-        const double endSeconds = CycleTimer::currentSeconds();
-        // Each worker owns its slot; join makes the record visible to the caller.
-        *args->timing = {args->threadId, startRow, totalRows, startSeconds, endSeconds};
-    }
+    // if (args->timing) {
+    //     const double endSeconds = CycleTimer::currentSeconds();
+    //     // Each worker owns its slot; join makes the record visible to the caller.
+    //     *args->timing = {args->threadId, startRow, totalRows, startSeconds, endSeconds};
+    // }
 }
 
 //

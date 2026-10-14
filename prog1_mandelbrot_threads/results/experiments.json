@@ -1,0 +1,322 @@
+{
+  "description": "Curated Problem 1 results; original experiment directories are retained unchanged",
+  "shared_measurement_method": {
+    "process_measurement": "Serial and parallel each run 5 times; use their respective minimum times",
+    "speedup": "Serial minimum / parallel minimum from the same process; median and linear Q25/Q75 across 10 processes",
+    "comparison_improvement": "Old parallel time / new parallel time within each adjacent pair; median and linear Q25/Q75",
+    "warmup": "One excluded single-thread run per view (and per variant for comparison)",
+    "parallel_timing_includes": [
+      "thread creation",
+      "worker computation",
+      "join"
+    ],
+    "parallel_timing_excludes": [
+      "PPM writing",
+      "result validation",
+      "workload summation",
+      "diagnostic printing"
+    ]
+  },
+  "experiments": [
+    {
+      "status": "complete",
+      "started_at": "2026-10-14T10:50:22.728246+08:00",
+      "finished_at": "2026-10-14T11:01:20.514078+08:00",
+      "architecture": "arm64",
+      "cxxflags": "-I../common -Iobjs/ -O3 -std=c++11 -Wall -fPIC",
+      "git_commit": "38d816c0961e08ec522d1a80b49fb6a7049f3f3d",
+      "views": [
+        1,
+        2
+      ],
+      "threads": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "repeats": 10,
+      "seed": 7,
+      "internal_repeats": 5,
+      "expected_measurements": 320,
+      "completed_measurements": 320,
+      "binary_sha256": "892bef15c61795e330919ebe45f1557a9514bef605005df000ede94a9ed0bde6",
+      "id": "baseline",
+      "original_directory": "results/problem1/20261014-105022-563071",
+      "hardware": {
+        "machdep.cpu.brand_string": "Apple M3",
+        "hw.physicalcpu": 8,
+        "hw.logicalcpu": 8,
+        "hw.memsize": 17179869184,
+        "hw.perflevel0.physicalcpu": 4,
+        "hw.perflevel1.physicalcpu": 4
+      },
+      "macos": "ProductName:\t\tmacOS\nProductVersion:\t\t26.5.2\nBuildVersion:\t\t25F84",
+      "tools": {
+        "clang": "Apple clang version 16.0.0 (clang-1600.0.26.4)",
+        "make": "GNU Make 3.81",
+        "python": "3.13.1",
+        "plot_versions": {
+          "matplotlib": "3.11.2",
+          "numpy": "2.5.4"
+        }
+      },
+      "power": {
+        "source": "AC Power",
+        "low_power_mode_values": [
+          0,
+          0
+        ]
+      },
+      "width": 1600,
+      "height": 1200,
+      "max_iterations": 256,
+      "thread_timing": false,
+      "all_runs_passed_result_check": true,
+      "source": {
+        "head_commit_is_not_a_complete_snapshot": true,
+        "program1_worktree_state": "?? prog1_mandelbrot_threads/benchmark.py",
+        "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "ordering": "Shuffle all configurations each round with seed 7; sequential execution"
+    },
+    {
+      "status": "complete",
+      "started_at": "2026-10-14T11:25:52.467142+08:00",
+      "finished_at": "2026-10-14T11:29:40.979702+08:00",
+      "architecture": "arm64",
+      "cxxflags": "-I../common -Iobjs/ -O3 -std=c++11 -Wall -fPIC",
+      "git_commit": "38d816c0961e08ec522d1a80b49fb6a7049f3f3d",
+      "views": [
+        1,
+        2
+      ],
+      "threads": [
+        2,
+        3,
+        4,
+        8,
+        16
+      ],
+      "repeats": 10,
+      "seed": 7,
+      "internal_repeats": 5,
+      "expected_measurements": 100,
+      "completed_measurements": 100,
+      "binary_sha256": "777080612c2b1b212169de32309dcd6bfd87b30da91cf83f92837a236639ebc4",
+      "id": "diagnostics",
+      "original_directory": "results/problem1/20261014-112552-293879",
+      "hardware": {
+        "machdep.cpu.brand_string": "Apple M3",
+        "hw.physicalcpu": 8,
+        "hw.logicalcpu": 8,
+        "hw.memsize": 17179869184,
+        "hw.perflevel0.physicalcpu": 4,
+        "hw.perflevel1.physicalcpu": 4
+      },
+      "macos": "ProductName:\t\tmacOS\nProductVersion:\t\t26.5.2\nBuildVersion:\t\t25F84",
+      "tools": {
+        "clang": "Apple clang version 16.0.0 (clang-1600.0.26.4)",
+        "make": "GNU Make 3.81",
+        "python": "3.13.1",
+        "plot_versions": {
+          "matplotlib": "3.11.2",
+          "numpy": "2.5.4"
+        }
+      },
+      "power": {
+        "source": "AC Power",
+        "low_power_mode_values": [
+          0,
+          0
+        ]
+      },
+      "width": 1600,
+      "height": 1200,
+      "max_iterations": 256,
+      "thread_timing": true,
+      "all_runs_passed_result_check": true,
+      "source": {
+        "head_commit_is_not_a_complete_snapshot": true,
+        "program1_worktree_state": " M prog1_mandelbrot_threads/Makefile\nAM prog1_mandelbrot_threads/benchmark.py\n M prog1_mandelbrot_threads/main.cpp\n M prog1_mandelbrot_threads/mandelbrotThread.cpp\n?? prog1_mandelbrot_threads/mandelbrotThread.h\n?? prog1_mandelbrot_threads/thread_diagnostics.py",
+        "file_sha256": {
+          "prog1_mandelbrot_threads/main.cpp": "7b40ed741af23e669bf7847bd0f58548fefa85331338674f66add765b6dc0b5b",
+          "prog1_mandelbrot_threads/mandelbrotThread.cpp": "390bf49b25c4c534c7b829b7292aada2ea886940682ace3c067f604e77932da6",
+          "prog1_mandelbrot_threads/mandelbrotThread.h": "f12455e3e72bfc30ac83019792fc57d9163a6027d6c5fd42610469d99273c47c",
+          "prog1_mandelbrot_threads/mandelbrotSerial.cpp": "d3e31b5adf7720c7cc838fc28a25b756ce46478a8ea3868ce4a74d71ab9f25cc",
+          "prog1_mandelbrot_threads/Makefile": "96d8310af40448913de26685cf2bb46a6b6bd250974ce9f48dfbc68b8744fa90",
+          "prog1_mandelbrot_threads/benchmark.py": "1f874b26fe035fb2308ba185260fcb92ec791091c4503cf382e7e632665df962",
+          "prog1_mandelbrot_threads/thread_diagnostics.py": "491105c2dce90b5a0f950e20ef986061f01e44df3b5106e9777197bbfc0f1f2e",
+          "common/CycleTimer.h": "e2f969bc61d0b94b55dc57cb6bb91ab67bbfd44449e1dd7b17f147b6fd7d31a6",
+          "common/ppm.cpp": "0ae9acf9425d6972b48b5b086324475e0bf4de8f208a4ac9a9f29dbb3d3fc29c"
+        }
+      },
+      "worker_selection": "Select the whole internal trial with the shortest parallel wall time; keep its complete worker set",
+      "worker_record_counts": {
+        "raw": 3300,
+        "selected": 660,
+        "summary": 66
+      },
+      "ordering": "Shuffle all configurations each round with seed 7; sequential execution"
+    },
+    {
+      "status": "complete",
+      "started_at": "2026-10-14T12:08:36.059808+08:00",
+      "finished_at": "2026-10-14T12:15:32.394790+08:00",
+      "architecture": "arm64",
+      "cxxflags": "-I../common -Iobjs/ -O3 -std=c++11 -Wall -fPIC",
+      "git_commit": "e9ff1a04ffd43f63e85ef52d633ef0d4918002d0",
+      "views": [
+        1,
+        2
+      ],
+      "threads": [
+        2,
+        3,
+        4,
+        8,
+        16
+      ],
+      "repeats": 10,
+      "seed": 7,
+      "internal_repeats": 5,
+      "expected_measurements": 200,
+      "completed_measurements": 200,
+      "binary_sha256": {
+        "block": "777080612c2b1b212169de32309dcd6bfd87b30da91cf83f92837a236639ebc4",
+        "cyclic": "1865abe36f684cb71321d3238f7414f5cf0c5dca11e8b70d9a583a524ba76738"
+      },
+      "id": "comparison",
+      "original_directory": "results/problem1/20261014-120611-275628-comparison",
+      "hardware": {
+        "machdep.cpu.brand_string": "Apple M3",
+        "hw.physicalcpu": 8,
+        "hw.logicalcpu": 8,
+        "hw.memsize": 17179869184,
+        "hw.perflevel0.physicalcpu": 4,
+        "hw.perflevel1.physicalcpu": 4
+      },
+      "macos": "ProductName:\t\tmacOS\nProductVersion:\t\t26.5.2\nBuildVersion:\t\t25F84",
+      "tools": {
+        "clang": "Apple clang version 16.0.0 (clang-1600.0.26.4)",
+        "make": "GNU Make 3.81",
+        "python": "3.13.1",
+        "plot_versions": {
+          "matplotlib": "3.11.2",
+          "numpy": "2.5.4"
+        }
+      },
+      "power": {
+        "source": "AC Power",
+        "low_power_mode_values": [
+          0,
+          0
+        ]
+      },
+      "width": 1600,
+      "height": 1200,
+      "max_iterations": 256,
+      "thread_timing": false,
+      "all_runs_passed_result_check": true,
+      "source": {
+        "head_commit_is_not_a_complete_snapshot": true,
+        "program1_worktree_state": "M  prog1_mandelbrot_threads/mandelbrotThread.cpp",
+        "variant_file_sha256": {
+          "block": {
+            "prog1_mandelbrot_threads/main.cpp": "7b40ed741af23e669bf7847bd0f58548fefa85331338674f66add765b6dc0b5b",
+            "prog1_mandelbrot_threads/mandelbrotThread.cpp": "390bf49b25c4c534c7b829b7292aada2ea886940682ace3c067f604e77932da6",
+            "prog1_mandelbrot_threads/mandelbrotThread.h": "f12455e3e72bfc30ac83019792fc57d9163a6027d6c5fd42610469d99273c47c",
+            "prog1_mandelbrot_threads/mandelbrotSerial.cpp": "d3e31b5adf7720c7cc838fc28a25b756ce46478a8ea3868ce4a74d71ab9f25cc",
+            "prog1_mandelbrot_threads/Makefile": "96d8310af40448913de26685cf2bb46a6b6bd250974ce9f48dfbc68b8744fa90",
+            "common/CycleTimer.h": "e2f969bc61d0b94b55dc57cb6bb91ab67bbfd44449e1dd7b17f147b6fd7d31a6",
+            "common/ppm.cpp": "0ae9acf9425d6972b48b5b086324475e0bf4de8f208a4ac9a9f29dbb3d3fc29c"
+          },
+          "cyclic": {
+            "prog1_mandelbrot_threads/main.cpp": "7b40ed741af23e669bf7847bd0f58548fefa85331338674f66add765b6dc0b5b",
+            "prog1_mandelbrot_threads/mandelbrotThread.cpp": "b526178db8930e33209d5ad667a9ad518ef366f7d7d9010ed7ec06d9b2e11f17",
+            "prog1_mandelbrot_threads/mandelbrotThread.h": "f12455e3e72bfc30ac83019792fc57d9163a6027d6c5fd42610469d99273c47c",
+            "prog1_mandelbrot_threads/mandelbrotSerial.cpp": "d3e31b5adf7720c7cc838fc28a25b756ce46478a8ea3868ce4a74d71ab9f25cc",
+            "prog1_mandelbrot_threads/Makefile": "96d8310af40448913de26685cf2bb46a6b6bd250974ce9f48dfbc68b8744fa90",
+            "common/CycleTimer.h": "e2f969bc61d0b94b55dc57cb6bb91ab67bbfd44449e1dd7b17f147b6fd7d31a6",
+            "common/ppm.cpp": "0ae9acf9425d6972b48b5b086324475e0bf4de8f208a4ac9a9f29dbb3d3fc29c"
+          }
+        }
+      },
+      "workload_analysis": {
+        "method": "offline serial reference remapped by row assignment",
+        "reference_totals": {
+          "2": 76760677,
+          "1": 133154262
+        },
+        "row_workload_sha256": "59f345701d3cccf68bda013300254f4903390c314979028ab4c23faf3fa5a5bd"
+      },
+      "ordering": "Shuffle configurations each round; run old/new pairs adjacently with randomized variant order; seed 7"
+    }
+  ],
+  "curated_assets": {
+    "figures/baseline_speedup.png": {
+      "source": "results/problem1/20261014-105022-563071/speedup.png",
+      "sha256": "c14f704a926b9d5956193204530fa500f89eaa67c58f2f9bd34d1c880bdf7f77"
+    },
+    "figures/baseline_runtime.png": {
+      "source": "results/problem1/20261014-105022-563071/runtime.png",
+      "sha256": "67a879db8bc65da19074d591729bfe6be2c79fa1eb9c08ed9b61b8d62b1a67d9"
+    },
+    "figures/thread_diagnostics_view1.png": {
+      "source": "results/problem1/20261014-112552-293879/thread_diagnostics_view1.png",
+      "sha256": "b293aeb8aaa4c76eee11a1b70124a3e7aec0719b60ab9488c997095e5aa0a973"
+    },
+    "figures/thread_diagnostics_view2.png": {
+      "source": "results/problem1/20261014-112552-293879/thread_diagnostics_view2.png",
+      "sha256": "bdc55816fbd18ef0ffa6e8fbcaef385de9bc78c79cff3e0bb4da029317a7969d"
+    },
+    "figures/comparison_speedup.png": {
+      "source": "results/problem1/20261014-120611-275628-comparison/comparison_speedup.png",
+      "sha256": "6698794b9605dbda25e9d57dafeddd6bb68ae930100720a4285e1430f2324c2a"
+    },
+    "figures/comparison_runtime.png": {
+      "source": "results/problem1/20261014-120611-275628-comparison/comparison_runtime.png",
+      "sha256": "fab6eec24615a846abfbdd1ab8928e9044a88ec672a36aa68e4357cf2bfb193a"
+    },
+    "figures/workload_view1.png": {
+      "source": "results/problem1/20261014-120611-275628-comparison/workload_view1.png",
+      "sha256": "727d56e540de59d6f9696177085604646c3bec052013656c5bb28e1f06cf3076"
+    },
+    "figures/workload_view2.png": {
+      "source": "results/problem1/20261014-120611-275628-comparison/workload_view2.png",
+      "sha256": "a2e8c8cdd7993c00af73c47315d111ca6e861d0a65c1fea1bc8be69a4429fb93"
+    },
+    "data/baseline_summary.csv": {
+      "source": "results/problem1/20261014-105022-563071/summary.csv",
+      "sha256": "5079bd841aa87216ff3feec2bcee02e4324ccebd84931fecfef1b115840b3c2a"
+    },
+    "data/thread_summary.csv": {
+      "source": "results/problem1/20261014-112552-293879/thread_summary.csv",
+      "sha256": "f8abdd6ea34b0e21a02c5ffda654a63b0105abeadb9a7907446bf744a3b1db3c"
+    },
+    "data/imbalance_summary.csv": {
+      "source": "results/problem1/20261014-112552-293879/imbalance_summary.csv",
+      "sha256": "731e4e0b2c30470123ec1ba9382b2925861e1cd2c41ea7aee6c84cb2062f78d7"
+    },
+    "data/comparison.csv": {
+      "source": "results/problem1/20261014-120611-275628-comparison/comparison.csv",
+      "sha256": "ef208bfaaaf219d3976bf56ae20df7c83b22bfa6d3f20b7e96cf345d8b7f0b04"
+    },
+    "data/workload.csv": {
+      "source": "results/problem1/20261014-120611-275628-comparison/workload.csv",
+      "sha256": "e70e54467fdc450ea59169f5a3bccdebce80da26f33329a6e6c5120bf277abd8"
+    }
+  }
+}
