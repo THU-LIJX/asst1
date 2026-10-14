@@ -1,0 +1,779 @@
+{
+  "status": "complete",
+  "started_at": "2026-10-14T15:24:42.678432+08:00",
+  "widths": [
+    2,
+    4,
+    8,
+    16
+  ],
+  "size": 10000,
+  "repeats": 2,
+  "expected_formal_runs": 8,
+  "completed_formal_runs": 8,
+  "input": "Unmodified initValue; independent processes; libc default rand sequence; EXP_MAX=10",
+  "git_commit": "6ffb0e2e38b3132fb6a518b2fac3ce6ed40ec902",
+  "git_status_at_start": "MM prog2_vecintrin/main.cpp\n?? prog2_vecintrin/benchmark.py",
+  "staged_diff_sha256": "8cc924330cace93a884c1797e844735938fc8a1ace7eec2a00c17b89ca2e080b",
+  "unstaged_diff_sha256": "d9ad2f7bd1c319b8fc8c7291d02b1555312c9ee4bfdeaaa1436588ca874bd25f",
+  "source_sha256": {
+    "main.cpp": "7bee14a0308c8fee685d33424e811e0974f89461e443576f5c2fd1c169fcce7d",
+    "CS149intrin.cpp": "136be8bae7708e13711a6bf59f992082922e5f9bf0ddb22b0860331d7fa0e04e",
+    "CS149intrin.h": "24106f0c8e8595e01b577e1654791677b6f3c4e94b44994afa6314eef64b6562",
+    "logger.cpp": "e3a352964bb96ecc3b85a09ded9289df5f46f40925d92df7639096a857a5a943",
+    "logger.h": "e7e4b06c5981421ac0d4e71c3c89fd3008b8fc76ca06a5e65243edce0245c4da",
+    "Makefile": "e643f8fe0b4b8faf1c4d4fe4f2308b02ea03ee4802f90e39c154ef3e6ac83baa"
+  },
+  "benchmark_sha256": "519facdeefe4855402e94b62515b4ad0dd56c3b02a21e5f2e7aa7758c4d026db",
+  "environment": {
+    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+    "architecture": "arm64",
+    "python": "3.13.1",
+    "clang": "Apple clang version 16.0.0 (clang-1600.0.26.4)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "make": "GNU Make 3.81\nCopyright (C) 2006  Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.\nThere is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A\nPARTICULAR PURPOSE.\n\nThis program built for i386-apple-darwin11.3.0",
+    "hardware": {
+      "machdep.cpu.brand_string": "Apple M3",
+      "hw.physicalcpu": "8",
+      "hw.logicalcpu": "8",
+      "hw.memsize": "17179869184"
+    },
+    "hardware_read_at": "2026-10-14T15:26:11.423704+08:00",
+    "hardware_read_method": "Read-only sysctl query outside the filesystem sandbox after measurement"
+  },
+  "build": {
+    "cxx": "clang++",
+    "cxxflags": "-std=c++11",
+    "cppflags": "-I../common",
+    "command_template": [
+      "make",
+      "-B",
+      "-C",
+      "<temporary-copy>/prog2_vecintrin",
+      "CXX=clang++"
+    ]
+  },
+  "reproduce_command": ".venv/bin/python prog2_vecintrin/benchmark.py --output-dir /Users/shin/Desktop/asst1/prog2_vecintrin/results",
+  "builds": [
+    {
+      "width": 2,
+      "log": "logs/build-width2.log",
+      "header_sha256": "03e5828c9f016a25e4297e634fd7aba35fe02bf07507ce14b7bbbcac6e53e788",
+      "binary_sha256": "24377bb927b1ce1875aec56e401618bfa64eb40d5b786c824862e0b63c7eec99"
+    },
+    {
+      "width": 4,
+      "log": "logs/build-width4.log",
+      "header_sha256": "b3ab4c6ada2a0100a31fb99a748c7d6bf398c644d22d0c99a5e5b10551bfe5fe",
+      "binary_sha256": "689f38ea9292a99917a0d8d49143a097331e9b606b44caa9e7286e09e8fc606f"
+    },
+    {
+      "width": 8,
+      "log": "logs/build-width8.log",
+      "header_sha256": "c76c11f961e7f6585089b1e5c230b2861a9adafd07e86978448808673a9a1bdb",
+      "binary_sha256": "1efeeb7beb3045e886179906a7de7a6195fb862b9c3b6d5177c2fb15f9fe5498"
+    },
+    {
+      "width": 16,
+      "log": "logs/build-width16.log",
+      "header_sha256": "f59cd896810fb1969eea8f66efa687562150ae396d089fdfce2eb78d18a14fe0",
+      "binary_sha256": "1140a7220465fc54f22f368a8a1fbf19225278901cb11f25e61f6bfce8478b04"
+    }
+  ],
+  "runs": [
+    {
+      "kind": "boundary",
+      "width": 2,
+      "size": 1,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "1"
+      ],
+      "log": "logs/boundary-width2-size1-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 2,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 71,
+        "total_vector_lanes": 108,
+        "size": 1,
+        "utilization_percent": 65.74074074074075,
+        "printed_utilization_percent": 65.7,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 2,
+      "size": 2,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "2"
+      ],
+      "log": "logs/boundary-width2-size2-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 2,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 103,
+        "total_vector_lanes": 108,
+        "size": 2,
+        "utilization_percent": 95.37037037037037,
+        "printed_utilization_percent": 95.4,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "passed"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 2,
+      "size": 3,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "3"
+      ],
+      "log": "logs/boundary-width2-size3-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 2,
+        "total_vector_instructions": 72,
+        "utilized_vector_lanes": 123,
+        "total_vector_lanes": 144,
+        "size": 3,
+        "utilization_percent": 85.41666666666667,
+        "printed_utilization_percent": 85.4,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 2,
+      "size": 5,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "5"
+      ],
+      "log": "logs/boundary-width2-size5-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 2,
+        "total_vector_instructions": 142,
+        "utilized_vector_lanes": 227,
+        "total_vector_lanes": 284,
+        "size": 5,
+        "utilization_percent": 79.92957746478874,
+        "printed_utilization_percent": 79.9,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "formal",
+      "width": 2,
+      "size": 10000,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "10000"
+      ],
+      "log": "logs/formal-width2-size10000-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 2,
+        "total_vector_instructions": 173032,
+        "utilized_vector_lanes": 296939,
+        "total_vector_lanes": 346064,
+        "size": 10000,
+        "utilization_percent": 85.80464885107956,
+        "printed_utilization_percent": 85.8,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "passed"
+      }
+    },
+    {
+      "kind": "formal",
+      "width": 2,
+      "size": 10000,
+      "repeat": 2,
+      "command": [
+        "./myexp",
+        "-s",
+        "10000"
+      ],
+      "log": "logs/formal-width2-size10000-run2.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 2,
+        "total_vector_instructions": 173032,
+        "utilized_vector_lanes": 296939,
+        "total_vector_lanes": 346064,
+        "size": 10000,
+        "utilization_percent": 85.80464885107956,
+        "printed_utilization_percent": 85.8,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "passed"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 4,
+      "size": 1,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "1"
+      ],
+      "log": "logs/boundary-width4-size1-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 4,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 109,
+        "total_vector_lanes": 216,
+        "size": 1,
+        "utilization_percent": 50.46296296296296,
+        "printed_utilization_percent": 50.5,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 4,
+      "size": 3,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "3"
+      ],
+      "log": "logs/boundary-width4-size3-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 4,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 160,
+        "total_vector_lanes": 216,
+        "size": 3,
+        "utilization_percent": 74.07407407407408,
+        "printed_utilization_percent": 74.1,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 4,
+      "size": 4,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "4"
+      ],
+      "log": "logs/boundary-width4-size4-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 4,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 191,
+        "total_vector_lanes": 216,
+        "size": 4,
+        "utilization_percent": 88.42592592592592,
+        "printed_utilization_percent": 88.4,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "passed"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 4,
+      "size": 5,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "5"
+      ],
+      "log": "logs/boundary-width4-size5-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 4,
+        "total_vector_instructions": 100,
+        "utilized_vector_lanes": 269,
+        "total_vector_lanes": 400,
+        "size": 5,
+        "utilization_percent": 67.25,
+        "printed_utilization_percent": 67.2,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "formal",
+      "width": 4,
+      "size": 10000,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "10000"
+      ],
+      "log": "logs/formal-width4-size10000-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 4,
+        "total_vector_instructions": 99564,
+        "utilized_vector_lanes": 323043,
+        "total_vector_lanes": 398256,
+        "size": 10000,
+        "utilization_percent": 81.11440882246595,
+        "printed_utilization_percent": 81.1,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "passed"
+      }
+    },
+    {
+      "kind": "formal",
+      "width": 4,
+      "size": 10000,
+      "repeat": 2,
+      "command": [
+        "./myexp",
+        "-s",
+        "10000"
+      ],
+      "log": "logs/formal-width4-size10000-run2.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 4,
+        "total_vector_instructions": 99564,
+        "utilized_vector_lanes": 323043,
+        "total_vector_lanes": 398256,
+        "size": 10000,
+        "utilization_percent": 81.11440882246595,
+        "printed_utilization_percent": 81.1,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "passed"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 8,
+      "size": 1,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "1"
+      ],
+      "log": "logs/boundary-width8-size1-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 8,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 185,
+        "total_vector_lanes": 432,
+        "size": 1,
+        "utilization_percent": 42.824074074074076,
+        "printed_utilization_percent": 42.8,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 8,
+      "size": 3,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "3"
+      ],
+      "log": "logs/boundary-width8-size3-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 8,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 236,
+        "total_vector_lanes": 432,
+        "size": 3,
+        "utilization_percent": 54.629629629629626,
+        "printed_utilization_percent": 54.6,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 8,
+      "size": 5,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "5"
+      ],
+      "log": "logs/boundary-width8-size5-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 8,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 301,
+        "total_vector_lanes": 432,
+        "size": 5,
+        "utilization_percent": 69.67592592592592,
+        "printed_utilization_percent": 69.7,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 8,
+      "size": 7,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "7"
+      ],
+      "log": "logs/boundary-width8-size7-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 8,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 345,
+        "total_vector_lanes": 432,
+        "size": 7,
+        "utilization_percent": 79.86111111111111,
+        "printed_utilization_percent": 79.9,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 8,
+      "size": 8,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "8"
+      ],
+      "log": "logs/boundary-width8-size8-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 8,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 366,
+        "total_vector_lanes": 432,
+        "size": 8,
+        "utilization_percent": 84.72222222222223,
+        "printed_utilization_percent": 84.7,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "passed"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 8,
+      "size": 9,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "9"
+      ],
+      "log": "logs/boundary-width8-size9-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 8,
+        "total_vector_instructions": 100,
+        "utilized_vector_lanes": 488,
+        "total_vector_lanes": 800,
+        "size": 9,
+        "utilization_percent": 61.0,
+        "printed_utilization_percent": 61.0,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "formal",
+      "width": 8,
+      "size": 10000,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "10000"
+      ],
+      "log": "logs/formal-width8-size10000-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 8,
+        "total_vector_instructions": 54040,
+        "utilized_vector_lanes": 340091,
+        "total_vector_lanes": 432320,
+        "size": 10000,
+        "utilization_percent": 78.6664970392302,
+        "printed_utilization_percent": 78.7,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "passed"
+      }
+    },
+    {
+      "kind": "formal",
+      "width": 8,
+      "size": 10000,
+      "repeat": 2,
+      "command": [
+        "./myexp",
+        "-s",
+        "10000"
+      ],
+      "log": "logs/formal-width8-size10000-run2.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 8,
+        "total_vector_instructions": 54040,
+        "utilized_vector_lanes": 340091,
+        "total_vector_lanes": 432320,
+        "size": 10000,
+        "utilization_percent": 78.6664970392302,
+        "printed_utilization_percent": 78.7,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "passed"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 16,
+      "size": 1,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "1"
+      ],
+      "log": "logs/boundary-width16-size1-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 16,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 337,
+        "total_vector_lanes": 864,
+        "size": 1,
+        "utilization_percent": 39.004629629629626,
+        "printed_utilization_percent": 39.0,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 16,
+      "size": 3,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "3"
+      ],
+      "log": "logs/boundary-width16-size3-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 16,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 388,
+        "total_vector_lanes": 864,
+        "size": 3,
+        "utilization_percent": 44.907407407407405,
+        "printed_utilization_percent": 44.9,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 16,
+      "size": 5,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "5"
+      ],
+      "log": "logs/boundary-width16-size5-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 16,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 453,
+        "total_vector_lanes": 864,
+        "size": 5,
+        "utilization_percent": 52.43055555555556,
+        "printed_utilization_percent": 52.4,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 16,
+      "size": 15,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "15"
+      ],
+      "log": "logs/boundary-width16-size15-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 16,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 711,
+        "total_vector_lanes": 864,
+        "size": 15,
+        "utilization_percent": 82.29166666666667,
+        "printed_utilization_percent": 82.3,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 16,
+      "size": 16,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "16"
+      ],
+      "log": "logs/boundary-width16-size16-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 16,
+        "total_vector_instructions": 54,
+        "utilized_vector_lanes": 739,
+        "total_vector_lanes": 864,
+        "size": 16,
+        "utilization_percent": 85.5324074074074,
+        "printed_utilization_percent": 85.5,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "passed"
+      }
+    },
+    {
+      "kind": "boundary",
+      "width": 16,
+      "size": 17,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "17"
+      ],
+      "log": "logs/boundary-width16-size17-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 16,
+        "total_vector_instructions": 92,
+        "utilized_vector_lanes": 910,
+        "total_vector_lanes": 1472,
+        "size": 17,
+        "utilization_percent": 61.82065217391305,
+        "printed_utilization_percent": 61.8,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "skipped_nondivisible"
+      }
+    },
+    {
+      "kind": "formal",
+      "width": 16,
+      "size": 10000,
+      "repeat": 1,
+      "command": [
+        "./myexp",
+        "-s",
+        "10000"
+      ],
+      "log": "logs/formal-width16-size10000-run1.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 16,
+        "total_vector_instructions": 28206,
+        "utilized_vector_lanes": 349611,
+        "total_vector_lanes": 451296,
+        "size": 10000,
+        "utilization_percent": 77.4682248457775,
+        "printed_utilization_percent": 77.5,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "passed"
+      }
+    },
+    {
+      "kind": "formal",
+      "width": 16,
+      "size": 10000,
+      "repeat": 2,
+      "command": [
+        "./myexp",
+        "-s",
+        "10000"
+      ],
+      "log": "logs/formal-width16-size10000-run2.log",
+      "status": "passed",
+      "statistics": {
+        "vector_width": 16,
+        "total_vector_instructions": 28206,
+        "utilized_vector_lanes": 349611,
+        "total_vector_lanes": 451296,
+        "size": 10000,
+        "utilization_percent": 77.4682248457775,
+        "printed_utilization_percent": 77.5,
+        "clamped_exp_verification": "passed",
+        "array_sum_verification": "passed"
+      }
+    }
+  ],
+  "repeat_checks": [
+    {
+      "width": 2,
+      "identical": true
+    },
+    {
+      "width": 4,
+      "identical": true
+    },
+    {
+      "width": 8,
+      "identical": true
+    },
+    {
+      "width": 16,
+      "identical": true
+    }
+  ],
+  "finished_at": "2026-10-14T15:24:49.408910+08:00",
+  "completed_boundary_runs": 20,
+  "workspace_and_index_unchanged": true,
+  "report_generator_sha256": "58b7ea412a50b7d191791560614eb68bf0631357d848f5b0d0962ab43ff000db",
+  "report_generated_at": "2026-10-14T15:28:11.433310+08:00"
+}

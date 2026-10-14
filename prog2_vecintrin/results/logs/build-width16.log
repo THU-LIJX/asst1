@@ -1,0 +1,3 @@
+clang++ -I../common -std=c++11 -c CS149intrin.cpp
+clang++ -I../common -std=c++11 -c logger.cpp
+clang++ -I../common -std=c++11 logger.o CS149intrin.o main.cpp  -o myexp

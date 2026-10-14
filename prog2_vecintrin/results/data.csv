@@ -1,0 +1,5 @@
+vector_width,size,total_vector_instructions,utilized_vector_lanes,total_vector_lanes,utilization_percent,printed_utilization_percent,clamped_exp_verification,array_sum_verification,repeats,repeat_consistent
+2,10000,173032,296939,346064,85.80464885107956,85.8,passed,passed,2,True
+4,10000,99564,323043,398256,81.11440882246595,81.1,passed,passed,2,True
+8,10000,54040,340091,432320,78.6664970392302,78.7,passed,passed,2,True
+16,10000,28206,349611,451296,77.4682248457775,77.5,passed,passed,2,True

@@ -1,0 +1,13 @@
+[1;31mCLAMPED EXPONENT[0m (required) 
+Results matched with answer!
+****************** Printing Vector Unit Statistics *******************
+Vector Width:              16
+Total Vector Instructions: 92
+Vector Utilization:        61.8%
+Utilized Vector Lanes:     910
+Total Vector Lanes:        1472
+************************ Result Verification *************************
+Passed!!!
+
+[1;31mARRAY SUM[0m (bonus) 
+Must have N % VECTOR_WIDTH == 0 for this problem (VECTOR_WIDTH is 16)

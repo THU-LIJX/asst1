@@ -249,6 +249,58 @@ void clampedExpVector(float* values, int* exponents, float* output, int N) {
   // Your solution should work for any value of
   // N and VECTOR_WIDTH, not just when VECTOR_WIDTH divides N
   //
+  int ind[VECTOR_WIDTH];
+  for (int i=0; i<VECTOR_WIDTH; i++) { ind[i] = i; }
+
+  __cs149_vec_float x;
+  __cs149_vec_int y;
+  __cs149_vec_float result;
+  __cs149_vec_int vecN = _cs149_vset_int(N);
+  __cs149_vec_int vecInd;
+  __cs149_vec_int zerosInt = _cs149_vset_int(0);
+  __cs149_vec_int onesInt = _cs149_vset_int(1);
+  __cs149_vec_int vectorWidthInt = _cs149_vset_int(VECTOR_WIDTH);
+  __cs149_vec_float onesFloat = _cs149_vset_float(1.f);
+  __cs149_vec_float zerosFloat = _cs149_vset_float(0.f);
+  __cs149_vec_float clampFloat = _cs149_vset_float(9.999999f);
+  __cs149_mask maskAll, maskValidInd, maskExpZero, maskExpNonZero, maskClamp;
+
+  maskAll = _cs149_init_ones(VECTOR_WIDTH);
+  _cs149_vload_int(vecInd, ind, maskAll);
+  for (int i=0; i<N; i+=VECTOR_WIDTH) {
+    _cs149_vlt_int(maskValidInd, vecInd, vecN, maskAll);
+
+    _cs149_vload_float(x, values+i, maskValidInd);
+    _cs149_vload_int(y, exponents+i, maskValidInd);
+
+    maskExpZero = _cs149_init_ones(0);
+    _cs149_veq_int(maskExpZero, y, zerosInt, maskValidInd);         // if (y == 0);
+    _cs149_vsub_float(result, onesFloat, zerosFloat, maskExpZero);  // result = 1.f;
+
+    maskExpNonZero = _cs149_init_ones(0);
+    _cs149_vgt_int(maskExpNonZero, y, zerosInt, maskValidInd);      // else;
+    _cs149_vsub_float(result, x, zerosFloat, maskExpNonZero);       // result = x;
+    _cs149_vsub_int(y, y, onesInt, maskExpNonZero);                 // count = y - 1;
+    maskExpNonZero = _cs149_init_ones(0);
+    _cs149_vgt_int(maskExpNonZero, y, zerosInt, maskValidInd);
+
+    int nonZeroExpCnt = _cs149_cntbits(maskExpNonZero);
+    while (nonZeroExpCnt > 0) {
+      _cs149_vmult_float(result, result, x, maskExpNonZero);          // result *= x;
+      _cs149_vsub_int(y, y, onesInt, maskExpNonZero);                 // count--;
+      maskExpNonZero = _cs149_init_ones(0);
+      _cs149_vgt_int(maskExpNonZero, y, zerosInt, maskValidInd);
+      nonZeroExpCnt = _cs149_cntbits(maskExpNonZero);
+    }
+
+    maskClamp = _cs149_init_ones(0);
+    _cs149_vgt_float(maskClamp, result, clampFloat, maskValidInd);   // if (result > 9.999999f)
+    _cs149_vmove_float(result, clampFloat, maskClamp);               // result = 9.999999f;
+
+    _cs149_vstore_float(output+i, result, maskValidInd);            // output[i] = result;
+
+    _cs149_vadd_int(vecInd, vecInd, vectorWidthInt, maskAll);
+  }
   
 }
 
@@ -270,11 +322,30 @@ float arraySumVector(float* values, int N) {
   //
   // CS149 STUDENTS TODO: Implement your vectorized version of arraySumSerial here
   //
+
+  float sum = 0;
+  float part = 0;
+  __cs149_vec_float x;
+  __cs149_vec_float result;
+  __cs149_mask maskAll, maskFirst;
   
   for (int i=0; i<N; i+=VECTOR_WIDTH) {
+    maskAll = _cs149_init_ones(VECTOR_WIDTH);
 
+    _cs149_vload_float(x, values+i, maskAll);
+    int size = VECTOR_WIDTH;
+    while (size > 1) {
+      _cs149_hadd_float(x, x);
+      _cs149_interleave_float(result, x);
+      _cs149_vmove_float(x, result, maskAll);
+      size /= 2;
+    }
+
+    maskFirst = _cs149_init_ones(1);
+    _cs149_vstore_float(&part, x, maskFirst);
+    sum += part;
   }
 
-  return 0.0;
+  return sum;
 }
 
