@@ -32,4 +32,5 @@ $(OBJDIR)/%.o: $(COMMONDIR)/%.cpp
 	$(CXX) $< $(CXXFLAGS) -c -o $@
 
 $(OBJDIR)/main.o: $(COMMONDIR)/CycleTimer.h
+$(OBJDIR)/main.o $(OBJDIR)/mandelbrotThread.o: mandelbrotThread.h
 

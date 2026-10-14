@@ -2,6 +2,7 @@
 #include <thread>
 
 #include "CycleTimer.h"
+#include "mandelbrotThread.h"
 
 typedef struct {
     float x0, x1;
@@ -12,6 +13,7 @@ typedef struct {
     int* output;
     int threadId;
     int numThreads;
+    ThreadTiming* timing;
 } WorkerArgs;
 
 
@@ -28,6 +30,7 @@ extern void mandelbrotSerial(
 //
 // Thread entrypoint.
 void workerThreadStart(WorkerArgs * const args) {
+    const double startSeconds = args->timing ? CycleTimer::currentSeconds() : 0.0;
 
     // TODO FOR CS149 STUDENTS: Implement the body of the worker
     // thread here. Each thread should make a call to mandelbrotSerial()
@@ -60,7 +63,11 @@ void workerThreadStart(WorkerArgs * const args) {
         args->output
     );
 
-    // printf("Hello world from thread %d\n", args->threadId);
+    if (args->timing) {
+        const double endSeconds = CycleTimer::currentSeconds();
+        // Each worker owns its slot; join makes the record visible to the caller.
+        *args->timing = {args->threadId, startRow, totalRows, startSeconds, endSeconds};
+    }
 }
 
 //
@@ -72,7 +79,7 @@ void mandelbrotThread(
     int numThreads,
     float x0, float y0, float x1, float y1,
     int width, int height,
-    int maxIterations, int output[])
+    int maxIterations, int output[], ThreadTiming* timings)
 {
     static constexpr int MAX_THREADS = 32;
 
@@ -102,6 +109,7 @@ void mandelbrotThread(
         args[i].output = output;
       
         args[i].threadId = i;
+        args[i].timing = timings ? &timings[i] : nullptr;
     }
 
     // Spawn the worker threads.  Note that only numThreads-1 std::threads

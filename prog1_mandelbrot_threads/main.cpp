@@ -1,20 +1,16 @@
 #include <stdio.h>
 #include <algorithm>
 #include <getopt.h>
+#include <cstdint>
+#include <vector>
 
 #include "CycleTimer.h"
+#include "mandelbrotThread.h"
 
 extern void mandelbrotSerial(
     float x0, float y0, float x1, float y1,
     int width, int height,
     int startRow, int numRows,
-    int maxIterations,
-    int output[]);
-
-extern void mandelbrotThread(
-    int numThreads,
-    float x0, float y0, float x1, float y1,
-    int width, int height,
     int maxIterations,
     int output[]);
 
@@ -46,6 +42,7 @@ void usage(const char* progname) {
     printf("Program Options:\n");
     printf("  -t  --threads <N>  Use N threads\n");
     printf("  -v  --view <INT>   Use specified view settings\n");
+    printf("      --thread-timing  Report per-worker timing after verification\n");
     printf("  -?  --help         This message\n");
 }
 
@@ -72,6 +69,7 @@ int main(int argc, char** argv) {
     const unsigned int height = 1200;
     const int maxIterations = 256;
     int numThreads = 2;
+    bool threadTiming = false;
 
     float x0 = -2;
     float x1 = 1;
@@ -83,6 +81,7 @@ int main(int argc, char** argv) {
     static struct option long_options[] = {
         {"threads", 1, 0, 't'},
         {"view", 1, 0, 'v'},
+        {"thread-timing", 0, 0, 1000},
         {"help", 0, 0, '?'},
         {0 ,0, 0, 0}
     };
@@ -90,6 +89,9 @@ int main(int argc, char** argv) {
     while ((opt = getopt_long(argc, argv, "t:v:?", long_options, NULL)) != EOF) {
 
         switch (opt) {
+        case 1000:
+            threadTiming = true;
+            break;
         case 't':
         {
             numThreads = atoi(optarg);
@@ -118,6 +120,11 @@ int main(int argc, char** argv) {
     }
     // end parsing of commandline options
 
+    if (threadTiming && (numThreads < 1 || numThreads > 32)) {
+        fprintf(stderr, "Error: Thread timing requires 1 to 32 threads\n");
+        return 1;
+    }
+
 
     int* output_serial = new int[width*height];
     int* output_thread = new int[width*height];
@@ -144,12 +151,21 @@ int main(int argc, char** argv) {
     //
 
     double minThread = 1e30;
+    std::vector<ThreadTiming> workerTimings[5];
+    double parallelTimes[5] = {};
+    if (threadTiming) {
+        for (int i = 0; i < 5; ++i)
+            workerTimings[i].resize(numThreads);
+    }
     for (int i = 0; i < 5; ++i) {
       memset(output_thread, 0, width * height * sizeof(int));
         double startTime = CycleTimer::currentSeconds();
-        mandelbrotThread(numThreads, x0, y0, x1, y1, width, height, maxIterations, output_thread);
+        mandelbrotThread(numThreads, x0, y0, x1, y1, width, height, maxIterations, output_thread,
+                         threadTiming ? workerTimings[i].data() : nullptr);
         double endTime = CycleTimer::currentSeconds();
         minThread = std::min(minThread, endTime - startTime);
+        if (threadTiming)
+            parallelTimes[i] = (endTime - startTime) * 1000;
     }
 
     printf("[mandelbrot thread]:\t\t[%.3f] ms\n", minThread * 1000);
@@ -166,6 +182,36 @@ int main(int argc, char** argv) {
 
     // compute speedup
     printf("\t\t\t\t(%.2fx speedup from %d threads)\n", minSerial/minThread, numThreads);
+
+    if (threadTiming) {
+        // The fixed input and row mapping give identical work in all five trials.
+        // Scan the verified output only after all timed computation has finished.
+        std::uint64_t serialIterations = 0;
+        for (unsigned int i = 0; i < width * height; ++i)
+            serialIterations += output_serial[i];
+        printf("THREAD_TIMING_TOTAL {\"iteration_sum\": %llu, \"width\": %u, "
+               "\"height\": %u, \"internal_repeats\": 5}\n",
+               static_cast<unsigned long long>(serialIterations), width, height);
+
+        std::vector<std::uint64_t> workIterations(numThreads, 0);
+        for (int thread = 0; thread < numThreads; ++thread) {
+            const ThreadTiming& timing = workerTimings[0][thread];
+            for (int row = timing.startRow; row < timing.startRow + timing.numRows; ++row)
+                for (unsigned int column = 0; column < width; ++column)
+                    workIterations[thread] += output_thread[row * width + column];
+        }
+        for (int iteration = 0; iteration < 5; ++iteration) {
+            for (const ThreadTiming& timing : workerTimings[iteration]) {
+                printf("THREAD_TIMING {\"iteration\": %d, \"thread_id\": %d, "
+                       "\"start_row\": %d, \"num_rows\": %d, \"elapsed_ms\": %.6f, "
+                       "\"parallel_iteration_ms\": %.6f, \"iteration_sum\": %llu}\n",
+                       iteration + 1, timing.threadId, timing.startRow, timing.numRows,
+                       (timing.endSeconds - timing.startSeconds) * 1000,
+                       parallelTimes[iteration],
+                       static_cast<unsigned long long>(workIterations[timing.threadId]));
+            }
+        }
+    }
 
     delete[] output_serial;
     delete[] output_thread;
