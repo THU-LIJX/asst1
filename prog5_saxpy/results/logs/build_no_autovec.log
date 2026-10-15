@@ -1,0 +1,6 @@
+/bin/mkdir -p objs/
+ispc -O3 --target=neon-i32x8 --arch=aarch64 --pic saxpy.ispc -o objs/saxpy_ispc.o -h objs/saxpy_ispc.h
+clang++ main.cpp -I../common -Iobjs/ -O2 -std=c++11 -Wall -fno-vectorize -fno-slp-vectorize -c -o objs/main.o
+clang++ saxpySerial.cpp -I../common -Iobjs/ -O2 -std=c++11 -Wall -fno-vectorize -fno-slp-vectorize -c -o objs/saxpySerial.o
+clang++ ../common/tasksys.cpp -I../common -Iobjs/ -O2 -std=c++11 -Wall -fno-vectorize -fno-slp-vectorize -c -o objs/tasksys.o
+clang++ -I../common -Iobjs/ -O2 -std=c++11 -Wall -fno-vectorize -fno-slp-vectorize -o saxpy objs/main.o objs/saxpySerial.o objs/saxpy_ispc.o objs/tasksys.o -lm -lpthread

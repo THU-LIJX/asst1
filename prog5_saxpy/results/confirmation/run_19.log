@@ -1,0 +1,6 @@
+[saxpy serial]:		[8.248] ms	[36.132] GB/s	[4.849] GFLOPS
+[saxpy ispc]:		[5.639] ms	[52.850] GB/s	[7.093] GFLOPS
+[saxpy task ispc]:	[3.201] ms	[93.104] GB/s	[12.496] GFLOPS
+				(1.76x speedup from use of tasks)
+				(1.46x speedup from ISPC)
+				(2.58x speedup from task ISPC)

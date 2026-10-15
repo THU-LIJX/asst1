@@ -1,0 +1,3 @@
+saxpySerial.cpp:9:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+    9 |     for (int i=0; i<N; i++) {
+      |     ^

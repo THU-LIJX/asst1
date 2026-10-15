@@ -1,0 +1,143 @@
+{
+  "status": "complete",
+  "started_at": "2026-10-15T12:05:51.330361+08:00",
+  "repeats": 10,
+  "size": 20000000,
+  "ordering_seed": 7,
+  "invocation": "prog5_saxpy/benchmark.py",
+  "variants": [
+    {
+      "name": "default",
+      "logical_width": 8,
+      "task_count": 64,
+      "cpp_autovec": true,
+      "build_command": "make -B 'CXXFLAGS=-I../common -Iobjs/ -O2 -std=c++11 -Wall' 'ISPCFLAGS=-O3 --target=neon-i32x8 --arch=aarch64 --pic'",
+      "executable": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-saxpy-owdp043t/default/prog5_saxpy/saxpy: Mach-O 64-bit executable arm64",
+      "ispc_source_sha256": "52d1d0596aa90b2dcf1df73e5a7bd25762ef67ac6bc2e50f4ffea871bcb6c2da"
+    },
+    {
+      "name": "no_autovec",
+      "logical_width": 8,
+      "task_count": 64,
+      "cpp_autovec": false,
+      "build_command": "make -B 'CXXFLAGS=-I../common -Iobjs/ -O2 -std=c++11 -Wall -fno-vectorize -fno-slp-vectorize' 'ISPCFLAGS=-O3 --target=neon-i32x8 --arch=aarch64 --pic'",
+      "executable": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-saxpy-owdp043t/no_autovec/prog5_saxpy/saxpy: Mach-O 64-bit executable arm64",
+      "ispc_source_sha256": "52d1d0596aa90b2dcf1df73e5a7bd25762ef67ac6bc2e50f4ffea871bcb6c2da"
+    },
+    {
+      "name": "neon_x4",
+      "logical_width": 4,
+      "task_count": 64,
+      "cpp_autovec": true,
+      "build_command": "make -B 'CXXFLAGS=-I../common -Iobjs/ -O2 -std=c++11 -Wall' 'ISPCFLAGS=-O3 --target=neon-i32x4 --arch=aarch64 --pic'",
+      "executable": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-saxpy-owdp043t/neon_x4/prog5_saxpy/saxpy: Mach-O 64-bit executable arm64",
+      "ispc_source_sha256": "52d1d0596aa90b2dcf1df73e5a7bd25762ef67ac6bc2e50f4ffea871bcb6c2da"
+    },
+    {
+      "name": "tasks_1",
+      "logical_width": 8,
+      "task_count": 1,
+      "cpp_autovec": true,
+      "build_command": "make -B 'CXXFLAGS=-I../common -Iobjs/ -O2 -std=c++11 -Wall' 'ISPCFLAGS=-O3 --target=neon-i32x8 --arch=aarch64 --pic'",
+      "executable": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-saxpy-owdp043t/tasks_1/prog5_saxpy/saxpy: Mach-O 64-bit executable arm64",
+      "ispc_source_sha256": "769a5e37c24815dabae0c635174d66a084d10d7e603d3dde985c330e3df947fe"
+    },
+    {
+      "name": "tasks_2",
+      "logical_width": 8,
+      "task_count": 2,
+      "cpp_autovec": true,
+      "build_command": "make -B 'CXXFLAGS=-I../common -Iobjs/ -O2 -std=c++11 -Wall' 'ISPCFLAGS=-O3 --target=neon-i32x8 --arch=aarch64 --pic'",
+      "executable": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-saxpy-owdp043t/tasks_2/prog5_saxpy/saxpy: Mach-O 64-bit executable arm64",
+      "ispc_source_sha256": "abe9009ead543561afba7ccf6e3403084dec2cd9674ea72a746e3051b792db8a"
+    },
+    {
+      "name": "tasks_4",
+      "logical_width": 8,
+      "task_count": 4,
+      "cpp_autovec": true,
+      "build_command": "make -B 'CXXFLAGS=-I../common -Iobjs/ -O2 -std=c++11 -Wall' 'ISPCFLAGS=-O3 --target=neon-i32x8 --arch=aarch64 --pic'",
+      "executable": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-saxpy-owdp043t/tasks_4/prog5_saxpy/saxpy: Mach-O 64-bit executable arm64",
+      "ispc_source_sha256": "71056ac864e67daaab41ddc2fd9a3a9540b651101b9896c2e7a6180758a12733"
+    },
+    {
+      "name": "tasks_8",
+      "logical_width": 8,
+      "task_count": 8,
+      "cpp_autovec": true,
+      "build_command": "make -B 'CXXFLAGS=-I../common -Iobjs/ -O2 -std=c++11 -Wall' 'ISPCFLAGS=-O3 --target=neon-i32x8 --arch=aarch64 --pic'",
+      "executable": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-saxpy-owdp043t/tasks_8/prog5_saxpy/saxpy: Mach-O 64-bit executable arm64",
+      "ispc_source_sha256": "6274f29a60cef4f6e37d9c647e4e14e9dd91f37738cf631e83bb7353a21ddf51"
+    },
+    {
+      "name": "tasks_16",
+      "logical_width": 8,
+      "task_count": 16,
+      "cpp_autovec": true,
+      "build_command": "make -B 'CXXFLAGS=-I../common -Iobjs/ -O2 -std=c++11 -Wall' 'ISPCFLAGS=-O3 --target=neon-i32x8 --arch=aarch64 --pic'",
+      "executable": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-saxpy-owdp043t/tasks_16/prog5_saxpy/saxpy: Mach-O 64-bit executable arm64",
+      "ispc_source_sha256": "ad244d2dfda2a98796c804cef0110094b0be47eaa521eeb54ce66d5de75b6c6d"
+    },
+    {
+      "name": "tasks_32",
+      "logical_width": 8,
+      "task_count": 32,
+      "cpp_autovec": true,
+      "build_command": "make -B 'CXXFLAGS=-I../common -Iobjs/ -O2 -std=c++11 -Wall' 'ISPCFLAGS=-O3 --target=neon-i32x8 --arch=aarch64 --pic'",
+      "executable": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-saxpy-owdp043t/tasks_32/prog5_saxpy/saxpy: Mach-O 64-bit executable arm64",
+      "ispc_source_sha256": "eeb28cff829a66e0798ccd92d9541eafc4d2ee4b8b87631adfd3a3fc8e188368"
+    },
+    {
+      "name": "tasks_128",
+      "logical_width": 8,
+      "task_count": 128,
+      "cpp_autovec": true,
+      "build_command": "make -B 'CXXFLAGS=-I../common -Iobjs/ -O2 -std=c++11 -Wall' 'ISPCFLAGS=-O3 --target=neon-i32x8 --arch=aarch64 --pic'",
+      "executable": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-saxpy-owdp043t/tasks_128/prog5_saxpy/saxpy: Mach-O 64-bit executable arm64",
+      "ispc_source_sha256": "7d927b8e82871a9be759526345074ad975624735af6c78977f371245729300ff"
+    }
+  ],
+  "valid_runs": 100,
+  "environment": {
+    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+    "python": "3.13.1 (main, Dec  3 2024, 17:59:52) [Clang 16.0.0 (clang-1600.0.26.4)]",
+    "clang": "Apple clang version 16.0.0 (clang-1600.0.26.4)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "ispc": "Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.31.0 (build commit  @ 20260625, LLVM 23.1.3)",
+    "make": "GNU Make 3.81\nCopyright (C) 2006  Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.\nThere is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A\nPARTICULAR PURPOSE.\n\nThis program built for i386-apple-darwin11.3.0",
+    "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=22282339)\t100%; charged; 0:00 remaining present: true",
+    "power_settings": "Battery Power:\n Sleep On Power Button 1\n lowpowermode         0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         60\n womp                 0\n networkoversleep     0\n sleep                1\n lessbright           1\n tcpkeepalive         1\n disksleep            10\nAC Power:\n Sleep On Power Button 1\n lowpowermode         0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         60\n womp                 1\n networkoversleep     0\n sleep                1\n tcpkeepalive         1\n disksleep            10",
+    "hardware": {
+      "machdep.cpu.brand_string": "Apple M3",
+      "hw.physicalcpu": "8",
+      "hw.logicalcpu": "8",
+      "hw.memsize": "17179869184",
+      "hw.perflevel0.physicalcpu": "4",
+      "hw.perflevel1.physicalcpu": "4"
+    },
+    "power_at_end": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=22282339)\t100%; charged; 0:00 remaining present: true"
+  },
+  "source": {
+    "commit": "a2475b63c4c2ce01b35d65ff814c3427101a985b",
+    "diff": "diff --git a/prog5_saxpy/main.cpp b/prog5_saxpy/main.cpp\nindex 58b606f..001e555 100644\n--- a/prog5_saxpy/main.cpp\n+++ b/prog5_saxpy/main.cpp\n@@ -65,10 +65,10 @@ int main() {\n         minSerial = std::min(minSerial, endTime - startTime);\n     }\n \n-// printf(\"[saxpy serial]:\\t\\t[%.3f] ms\\t[%.3f] GB/s\\t[%.3f] GFLOPS\\n\",\n-    //       minSerial * 1000,\n-    //       toBW(TOTAL_BYTES, minSerial),\n-    //       toGFLOPS(TOTAL_FLOPS, minSerial));\n+    printf(\"[saxpy serial]:\\t\\t[%.3f] ms\\t[%.3f] GB/s\\t[%.3f] GFLOPS\\n\",\n+            minSerial * 1000,\n+            toBW(TOTAL_BYTES, minSerial),\n+            toGFLOPS(TOTAL_FLOPS, minSerial));\n \n     //\n     // Run the ISPC (single core) implementation\n@@ -107,8 +107,8 @@ int main() {\n            toGFLOPS(TOTAL_FLOPS, minTaskISPC));\n \n     printf(\"\\t\\t\\t\\t(%.2fx speedup from use of tasks)\\n\", minISPC/minTaskISPC);\n-    //printf(\"\\t\\t\\t\\t(%.2fx speedup from ISPC)\\n\", minSerial/minISPC);\n-    //printf(\"\\t\\t\\t\\t(%.2fx speedup from task ISPC)\\n\", minSerial/minTaskISPC);\n+    printf(\"\\t\\t\\t\\t(%.2fx speedup from ISPC)\\n\", minSerial/minISPC);\n+    printf(\"\\t\\t\\t\\t(%.2fx speedup from task ISPC)\\n\", minSerial/minTaskISPC);\n \n     delete[] arrayX;\n     delete[] arrayY;",
+    "sha256": {
+      "prog5_saxpy/main.cpp": "78967d96b0c91e82330c241f8aa5969f56b2168663ccade7a2fadaee99413b2a",
+      "prog5_saxpy/saxpySerial.cpp": "d815217cbf85de176063b71727f3f842b70bc9e185741f01c52a28a9b82ab129",
+      "prog5_saxpy/saxpy.ispc": "52d1d0596aa90b2dcf1df73e5a7bd25762ef67ac6bc2e50f4ffea871bcb6c2da",
+      "prog5_saxpy/Makefile": "3dafc410fa38c5583ae93a8167ff0773f0f70349fdfe75e9525140db4ea914cb",
+      "prog5_saxpy/benchmark.py": "00ac2b00f35e3abd47e02f8b3a2bd4029b09a9eaffc6d31a5d62fdb151cfe374",
+      "common/tasksys.cpp": "c36a043019aa8a4dd493056d58dc9160498a0a00b622c04f5519a0353589946d",
+      "common/CycleTimer.h": "e2f969bc61d0b94b55dc57cb6bb91ab67bbfd44449e1dd7b17f147b6fd7d31a6"
+    }
+  },
+  "finished_at": "2026-10-15T12:06:16.865157+08:00",
+  "independent_audit": {
+    "formal_scan_runs": 100,
+    "confirmation_runs": 20,
+    "all_runs_have_no_mismatches": true,
+    "all_csv_statistics_recomputed": true,
+    "log_csv_consistency": true,
+    "source_hashes_match": true,
+    "internal_links_valid": true,
+    "parser_rejects_error_duplicate_missing_stats": true
+  }
+}

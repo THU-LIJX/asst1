@@ -1,0 +1,20 @@
+{
+  "status": "complete",
+  "started_at": "2026-10-15T12:07:08.554595+08:00",
+  "repeats": 20,
+  "internal_trials": 3,
+  "pause_seconds": 0.1,
+  "command": "./prog5_saxpy/saxpy",
+  "build_command": "make -B -C prog5_saxpy",
+  "reason": "Check default configuration separately after high variance in the configuration scan.",
+  "source_sha256": {
+    "prog5_saxpy/main.cpp": "78967d96b0c91e82330c241f8aa5969f56b2168663ccade7a2fadaee99413b2a",
+    "prog5_saxpy/saxpySerial.cpp": "d815217cbf85de176063b71727f3f842b70bc9e185741f01c52a28a9b82ab129",
+    "prog5_saxpy/saxpy.ispc": "52d1d0596aa90b2dcf1df73e5a7bd25762ef67ac6bc2e50f4ffea871bcb6c2da",
+    "prog5_saxpy/Makefile": "3dafc410fa38c5583ae93a8167ff0773f0f70349fdfe75e9525140db4ea914cb",
+    "prog5_saxpy/benchmark.py": "00ac2b00f35e3abd47e02f8b3a2bd4029b09a9eaffc6d31a5d62fdb151cfe374"
+  },
+  "executable_sha256": "063bfe3375099c59be395ad3cefcd386fc1be42276b18d17ec1b2e7796b24ea9",
+  "finished_at": "2026-10-15T12:07:16.139710+08:00",
+  "valid_runs": 20
+}
