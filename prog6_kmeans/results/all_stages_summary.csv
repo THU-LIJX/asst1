@@ -1,0 +1,4 @@
+variant,runs,iterations,assignments_ms_q25,assignments_ms_median,assignments_ms_q75,centroids_ms_q25,centroids_ms_median,centroids_ms_q75,cost_ms_q25,cost_ms_median,cost_ms_q75,total_ms_q25,total_ms_median,total_ms_q75
+baseline,5,50,691.956,700.465,732.695,789.992,828.588,858.087,2051.059,2093.079,2141.836,3505.275,3696.392,3731.388
+parallel4,5,50,661.014,672.896,674.158,607.255,607.984,613.439,628.055,630.519,645.404,1880.733,1911.412,1940.259
+parallel8,5,50,710.927,731.299,772.258,589.864,604.833,605.617,661.482,670.203,721.915,1986.767,2003.693,2029.015

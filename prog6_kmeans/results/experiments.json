@@ -1,0 +1,309 @@
+{
+  "status": "complete",
+  "started_at": "2026-10-15T16:32:33.455073+08:00",
+  "seed": 7,
+  "repeats": 5,
+  "warmups_per_variant": 1,
+  "base_commit": "f51e529e865a2817b573b2adcad7ecfa8c524bb4",
+  "machine": {
+    "chip": "Apple M3",
+    "performance_cores": 4,
+    "efficiency_cores": 4,
+    "memory_gib": 16,
+    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "cppflags": "-I../common -Iobjs/ -O3 -std=c++11 -Wall",
+  "ispcflags": "-O3 --target=neon-i32x4 --arch=aarch64 --pic --opt=disable-fma",
+  "sources": {
+    "original": {
+      "main.cpp": "4de09a90053270d5d52405004dd122f99667b490ab2661601d22893b923ffc53",
+      "utils.cpp": "9c153908e880f9f1eb0d5dbd77144dc65b41cc098e9f18c77f95640f81c3ee15",
+      "kmeansThread.cpp": "25d3e53396652940e09c1a92b332824c726768eee9952b59efd797b486e140a7",
+      "Makefile": "68599cbbd58d473777f3e7d9dd4a031b17ebf684667ffd5e8900b5bf3745d2cc"
+    },
+    "current": {
+      "main.cpp": "4de09a90053270d5d52405004dd122f99667b490ab2661601d22893b923ffc53",
+      "utils.cpp": "9c153908e880f9f1eb0d5dbd77144dc65b41cc098e9f18c77f95640f81c3ee15",
+      "kmeansThread.cpp": "fc424bac136adc4666441934eac56f796834f6cb662565dd9feb627aab60a792",
+      "Makefile": "e30b2404d347637ca3dd46b10e4381ff77cc77212f047dc9264532fbd7d2bbf7",
+      "assignments.ispc": "04d1e41b21f3c72b57c4e00a918ea8ae55fd2ac0b3fd2e55ba2948b65dd0f9cd"
+    }
+  },
+  "commands": {
+    "build": "make -j4",
+    "run": "./kmeans"
+  },
+  "dataset": {
+    "M": 1000000,
+    "N": 100,
+    "K": 3,
+    "epsilon": 0.1,
+    "bytes": 804002420,
+    "sha256": "ca508072ee8532d3d559abc80bf7a625862476a01823f57bef3e63e6b9c41cc9"
+  },
+  "clang": "Apple clang version 16.0.0 (clang-1600.0.26.4)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+  "ispc": "Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.31.0 (build commit  @ 20260625, LLVM 23.1.3)",
+  "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=22282339)\t100%; charged; 0:00 remaining present: true",
+  "finished_at": "2026-10-15T16:34:01.355907+08:00",
+  "valid_runs": 10,
+  "speedup": 5.386774443090898,
+  "summary": [
+    {
+      "variant": "original",
+      "runs": 5,
+      "iterations": 50,
+      "assignments_ms_q25": 7885.326,
+      "assignments_ms_median": 7916.297,
+      "assignments_ms_q75": 7978.075,
+      "centroids_ms_q25": 836.367,
+      "centroids_ms_median": 848.565,
+      "centroids_ms_q75": 852.248,
+      "cost_ms_q25": 2009.993,
+      "cost_ms_median": 2029.478,
+      "cost_ms_q75": 2046.177,
+      "total_ms_q25": 10780.086,
+      "total_ms_median": 10807.227,
+      "total_ms_q75": 10822.242
+    },
+    {
+      "variant": "current",
+      "runs": 5,
+      "iterations": 50,
+      "assignments_ms_q25": 614.689,
+      "assignments_ms_median": 703.664,
+      "assignments_ms_q75": 750.788,
+      "centroids_ms_q25": 601.279,
+      "centroids_ms_median": 627.561,
+      "centroids_ms_q75": 639.492,
+      "cost_ms_q25": 607.614,
+      "cost_ms_median": 675.012,
+      "cost_ms_q75": 708.389,
+      "total_ms_q25": 1821.957,
+      "total_ms_median": 2006.252,
+      "total_ms_q75": 2098.684
+    }
+  ],
+  "method": "Independent processes, one warmup per variant, five measured rounds, Random(7) shuffles original/current within each round; q25/median/q75 are order statistics 2/3/4 of five sorted samples. Timings parsed from three-decimal millisecond output.",
+  "historical_experiments": {
+    "assignments_threads": {
+      "started_at": "2026-10-15T15:32:13.020813+08:00",
+      "finished_at": "2026-10-15T15:36:13.321395+08:00",
+      "repeats": 5,
+      "seed": 7,
+      "valid_runs": 25,
+      "verification": {
+        "baseline": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "assignments_centroids_cost_bitwise_equal": true
+        },
+        "threads_1": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "assignments_centroids_cost_bitwise_equal": true
+        },
+        "threads_2": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "assignments_centroids_cost_bitwise_equal": true
+        },
+        "threads_4": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "assignments_centroids_cost_bitwise_equal": true
+        },
+        "threads_8": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "assignments_centroids_cost_bitwise_equal": true
+        }
+      },
+      "summary_csv": "assignments_threads_summary.csv",
+      "original_directory": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-kmeans-parallel-ehbkeqd3",
+      "setup": {
+        "root": "/Users/shin/Desktop/asst1",
+        "temporary": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-kmeans-parallel-ehbkeqd3",
+        "baseline_sha256": "25d3e53396652940e09c1a92b332824c726768eee9952b59efd797b486e140a7",
+        "index_sha256": "4b3f37a2d013ce313999e187986e9cd1a68ff2be9cefd2b4f8b2cf216f0219c7",
+        "preserved_outputs": {
+          "prog6_kmeans/start.log": "8003371b3f536c280f638647b65e611dec2a644aeccdef6d9e388fd9fac3db8b",
+          "prog6_kmeans/end.png": "1b7cf192bb4ed6160ba02bdece38ffa56e795fcd9400d8e703852a122090eef1",
+          "prog6_kmeans/end.log": "703dc4923572e7fab85db3e8a2f49b8a07424fe7a59592b43197933a8313ac03",
+          "prog6_kmeans/start.png": "0b5c8b7315982de6c55c66487157164d5a519e8782379da8202530957fbe1c93"
+        },
+        "dataset_size": 804002420
+      }
+    },
+    "assignments_simd": {
+      "started_at": "2026-10-15T16:07:35.749647+08:00",
+      "finished_at": "2026-10-15T16:13:24.473173+08:00",
+      "repeats": 5,
+      "seed": 7,
+      "valid_runs": 50,
+      "verification": {
+        "base_t1": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "bitwise_equal": true,
+          "assignment_differences": 0,
+          "centroid_max_abs": 0.0,
+          "cost_max_abs": 0.0
+        },
+        "base_t4": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "bitwise_equal": true,
+          "assignment_differences": 0,
+          "centroid_max_abs": 0.0,
+          "cost_max_abs": 0.0
+        },
+        "cpp2_t1": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "bitwise_equal": true,
+          "assignment_differences": 0,
+          "centroid_max_abs": 0.0,
+          "cost_max_abs": 0.0
+        },
+        "cpp2_t4": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "bitwise_equal": true,
+          "assignment_differences": 0,
+          "centroid_max_abs": 0.0,
+          "cost_max_abs": 0.0
+        },
+        "cpp4_t1": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "bitwise_equal": true,
+          "assignment_differences": 0,
+          "centroid_max_abs": 0.0,
+          "cost_max_abs": 0.0
+        },
+        "cpp4_t4": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "bitwise_equal": true,
+          "assignment_differences": 0,
+          "centroid_max_abs": 0.0,
+          "cost_max_abs": 0.0
+        },
+        "ispc4_t1": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "bitwise_equal": true,
+          "assignment_differences": 0,
+          "centroid_max_abs": 0.0,
+          "cost_max_abs": 0.0
+        },
+        "ispc4_t4": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "bitwise_equal": true,
+          "assignment_differences": 0,
+          "centroid_max_abs": 0.0,
+          "cost_max_abs": 0.0
+        },
+        "ispc8_t1": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "bitwise_equal": true,
+          "assignment_differences": 0,
+          "centroid_max_abs": 0.0,
+          "cost_max_abs": 0.0
+        },
+        "ispc8_t4": {
+          "iterations": 50,
+          "state_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+          "bitwise_equal": true,
+          "assignment_differences": 0,
+          "centroid_max_abs": 0.0,
+          "cost_max_abs": 0.0
+        }
+      },
+      "summary_csv": "assignments_simd_summary.csv",
+      "original_directory": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-kmeans-simd-kzstyoq_",
+      "setup": {
+        "work": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-kmeans-simd-kzstyoq_",
+        "root": "/Users/shin/Desktop/asst1",
+        "source_sha256": {
+          "main.cpp": "4de09a90053270d5d52405004dd122f99667b490ab2661601d22893b923ffc53",
+          "kmeansThread.cpp": "7e52949e9b839f88c4ac41d9c935d03d121da999a62ebccd6b09d5547e677aec",
+          "utils.cpp": "9c153908e880f9f1eb0d5dbd77144dc65b41cc098e9f18c77f95640f81c3ee15",
+          "Makefile": "68599cbbd58d473777f3e7d9dd4a031b17ebf684667ffd5e8900b5bf3745d2cc"
+        },
+        "index_sha256": "ce5e90feb1e50fabc9ff1f9dd273db27f2ddc86cf3235d93e532492d11d1bcbf",
+        "preserved_outputs": {
+          "start.log": "8003371b3f536c280f638647b65e611dec2a644aeccdef6d9e388fd9fac3db8b",
+          "end.png": "1b7cf192bb4ed6160ba02bdece38ffa56e795fcd9400d8e703852a122090eef1",
+          "end.log": "703dc4923572e7fab85db3e8a2f49b8a07424fe7a59592b43197933a8313ac03",
+          "start.png": "0b5c8b7315982de6c55c66487157164d5a519e8782379da8202530957fbe1c93"
+        }
+      },
+      "numerics": {
+        "base": {
+          "pairs": 3000000,
+          "unequal": 0,
+          "max_abs": 0,
+          "max_rel": 0,
+          "mean_abs": 0,
+          "classification_changes": 0
+        },
+        "cpp2": {
+          "pairs": 3000000,
+          "unequal": 1984665,
+          "max_abs": 6.217248937900877e-15,
+          "max_rel": 9.375147675187493e-16,
+          "mean_abs": 8.497279916734139e-16,
+          "classification_changes": 0
+        },
+        "cpp4": {
+          "pairs": 3000000,
+          "unequal": 1900169,
+          "max_abs": 6.217248937900877e-15,
+          "max_rel": 8.484410337048677e-16,
+          "mean_abs": 7.711558798935887e-16,
+          "classification_changes": 0
+        },
+        "ispc4": {
+          "pairs": 3000000,
+          "unequal": 1904164,
+          "max_abs": 6.217248937900877e-15,
+          "max_rel": 8.484410337048677e-16,
+          "mean_abs": 7.740850923217598e-16,
+          "classification_changes": 0
+        },
+        "ispc8": {
+          "pairs": 3000000,
+          "unequal": 1883970,
+          "max_abs": 7.105427357601002e-15,
+          "max_rel": 9.69646895662706e-16,
+          "mean_abs": 7.571809845785538e-16,
+          "classification_changes": 0
+        }
+      }
+    },
+    "all_stages": {
+      "original_directory": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-kmeans-all-parallel-h04ofmge",
+      "repeats": 5,
+      "seed": 7,
+      "valid_runs": 15,
+      "summary_csv": "all_stages_summary.csv",
+      "comparison": "ISPC x4 and four Assignments threads fixed; Centroids/Cost serial, four threads, or eight threads."
+    }
+  },
+  "verification": {
+    "iterations": 50,
+    "full_assignment_differences": 0,
+    "centroid_max_absolute_error": 3.042011087472929e-14,
+    "cost_max_absolute_error": 5.494803190231323e-08,
+    "cost_max_relative_error": 2.4543947421160614e-14,
+    "stage_edge_cases": 36,
+    "ubsan": "passed",
+    "asan": "runtime initialization failed in sanitizer_malloc_mac.inc before test execution",
+    "prior_full_state_reference_sha256": "0a4c51b7c3df6b93dd1b09a32fd81e660ba298a952f12180199487349148843e",
+    "full_state_validation_directory": "/var/folders/78/n_d8jybx5gl369f8mg57nrxw0000gn/T/cs149-kmeans-all-parallel-h04ofmge",
+    "confirmation_sampled_logs": "start.log and end.log match original byte-for-byte on every measured current run; sampled logs supplement the earlier full-array validation."
+  }
+}

@@ -3,8 +3,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <thread>
+#include <vector>
 
 #include "CycleTimer.h"
+#include "assignments_ispc.h"
 
 using namespace std;
 
@@ -19,6 +21,26 @@ typedef struct {
   double *currCost;
   int M, N, K;
 } WorkerArgs;
+
+namespace {
+
+template <typename Work>
+void forEachPointRange(int pointCount, int threadCount, const Work &work) {
+  const auto run = [&](int t) {
+    const int begin = static_cast<long long>(pointCount) * t / threadCount;
+    const int end = static_cast<long long>(pointCount) * (t + 1) / threadCount;
+    work(t, begin, end);
+  };
+  vector<thread> workers;
+  workers.reserve(threadCount - 1);
+  for (int t = 1; t < threadCount; t++)
+    workers.emplace_back(run, t);
+  run(0);
+  for (thread &worker : workers)
+    worker.join();
+}
+
+} // namespace
 
 
 /**
@@ -65,27 +87,28 @@ double dist(double *x, double *y, int nDim) {
  * Assigns each data point to its "closest" cluster centroid.
  */
 void computeAssignments(WorkerArgs *const args) {
-  double *minDist = new double[args->M];
-  
-  // Initialize arrays
-  for (int m =0; m < args->M; m++) {
-    minDist[m] = 1e30;
-    args->clusterAssignments[m] = -1;
-  }
+  if (args->M <= 0)
+    return;
 
-  // Assign datapoints to closest centroids
-  for (int k = args->start; k < args->end; k++) {
-    for (int m = 0; m < args->M; m++) {
-      double d = dist(&args->data[m * args->N],
-                      &args->clusterCentroids[k * args->N], args->N);
-      if (d < minDist[m]) {
-        minDist[m] = d;
-        args->clusterAssignments[m] = k;
-      }
-    }
-  }
+  constexpr int kThreadCount = 4;
+  const int threadCount = min(kThreadCount, args->M);
+  const auto assignRange = [args](int begin, int end) {
+    // Batch the range to avoid crossing the C++/ISPC boundary for each distance.
+    ispc::assignments_ispc(args->data, args->clusterCentroids,
+                          args->clusterAssignments, args->N, args->start,
+                          args->end, begin, end);
+  };
 
-  delete[] minDist;
+  // Disjoint point ranges avoid shared updates; centroids stay read-only until join.
+  thread workers[kThreadCount];
+  for (int t = 1; t < threadCount; t++) {
+    const int begin = static_cast<long long>(args->M) * t / threadCount;
+    const int end = static_cast<long long>(args->M) * (t + 1) / threadCount;
+    workers[t] = thread(assignRange, begin, end);
+  }
+  assignRange(0, args->M / threadCount);
+  for (int t = 1; t < threadCount; t++)
+    workers[t].join();
 }
 
 /**
@@ -93,62 +116,62 @@ void computeAssignments(WorkerArgs *const args) {
  * each cluster.
  */
 void computeCentroids(WorkerArgs *const args) {
-  int *counts = new int[args->K];
+  constexpr int kThreadCount = 4;
+  const int threadCount = min(kThreadCount, max(args->M, 1));
+  const size_t centroidSize = static_cast<size_t>(args->K) * args->N;
+  vector<vector<double>> sums(threadCount, vector<double>(centroidSize, 0.0));
+  vector<vector<int>> counts(threadCount, vector<int>(args->K, 0));
 
-  // Zero things out
+  // Private accumulators avoid contention when many points share a cluster.
+  forEachPointRange(args->M, threadCount, [&](int t, int begin, int end) {
+    for (int m = begin; m < end; m++) {
+      const int k = args->clusterAssignments[m];
+      const size_t centroidOffset = static_cast<size_t>(k) * args->N;
+      const size_t pointOffset = static_cast<size_t>(m) * args->N;
+      for (int n = 0; n < args->N; n++)
+        sums[t][centroidOffset + n] += args->data[pointOffset + n];
+      counts[t][k]++;
+    }
+  });
+
+  // A fixed reduction order makes results independent of thread scheduling.
   for (int k = 0; k < args->K; k++) {
-    counts[k] = 0;
+    int count = 0;
+    for (int t = 0; t < threadCount; t++)
+      count += counts[t][k];
+    const size_t offset = static_cast<size_t>(k) * args->N;
     for (int n = 0; n < args->N; n++) {
-      args->clusterCentroids[k * args->N + n] = 0.0;
+      double sum = 0.0;
+      for (int t = 0; t < threadCount; t++)
+        sum += sums[t][offset + n];
+      args->clusterCentroids[offset + n] = sum / max(count, 1);
     }
   }
-
-
-  // Sum up contributions from assigned examples
-  for (int m = 0; m < args->M; m++) {
-    int k = args->clusterAssignments[m];
-    for (int n = 0; n < args->N; n++) {
-      args->clusterCentroids[k * args->N + n] +=
-          args->data[m * args->N + n];
-    }
-    counts[k]++;
-  }
-
-  // Compute means
-  for (int k = 0; k < args->K; k++) {
-    counts[k] = max(counts[k], 1); // prevent divide by 0
-    for (int n = 0; n < args->N; n++) {
-      args->clusterCentroids[k * args->N + n] /= counts[k];
-    }
-  }
-
-  delete[] counts;
 }
 
 /**
  * Computes the per-cluster cost. Used to check if the algorithm has converged.
  */
 void computeCost(WorkerArgs *const args) {
-  double *accum = new double[args->K];
+  constexpr int kThreadCount = 4;
+  const int threadCount = min(kThreadCount, max(args->M, 1));
+  vector<vector<double>> costs(threadCount, vector<double>(args->K, 0.0));
 
-  // Zero things out
-  for (int k = 0; k < args->K; k++) {
-    accum[k] = 0.0;
-  }
+  forEachPointRange(args->M, threadCount, [&](int t, int begin, int end) {
+    for (int m = begin; m < end; m++) {
+      const int k = args->clusterAssignments[m];
+      costs[t][k] += dist(&args->data[static_cast<size_t>(m) * args->N],
+                          &args->clusterCentroids[static_cast<size_t>(k) * args->N],
+                          args->N);
+    }
+  });
 
-  // Sum cost for all data points assigned to centroid
-  for (int m = 0; m < args->M; m++) {
-    int k = args->clusterAssignments[m];
-    accum[k] += dist(&args->data[m * args->N],
-                     &args->clusterCentroids[k * args->N], args->N);
-  }
-
-  // Update costs
   for (int k = args->start; k < args->end; k++) {
-    args->currCost[k] = accum[k];
+    double sum = 0.0;
+    for (int t = 0; t < threadCount; t++)
+      sum += costs[t][k];
+    args->currCost[k] = sum;
   }
-
-  delete[] accum;
 }
 
 /**
@@ -197,6 +220,9 @@ void kMeansThread(double *data, double *clusterCentroids, int *clusterAssignment
 
   /* Main K-Means Algorithm Loop */
   int iter = 0;
+  double assignmentSeconds = 0.0;
+  double centroidSeconds = 0.0;
+  double costSeconds = 0.0;
   while (!stoppingConditionMet(prevCost, currCost, epsilon, K)) {
     // Update cost arrays (for checking convergence criteria)
     for (int k = 0; k < K; k++) {
@@ -207,12 +233,35 @@ void kMeansThread(double *data, double *clusterCentroids, int *clusterAssignment
     args.start = 0;
     args.end = K;
 
+    double startTime = CycleTimer::currentSeconds();
     computeAssignments(&args);
+    assignmentSeconds += CycleTimer::currentSeconds() - startTime;
+
+    startTime = CycleTimer::currentSeconds();
     computeCentroids(&args);
+    centroidSeconds += CycleTimer::currentSeconds() - startTime;
+
+    startTime = CycleTimer::currentSeconds();
     computeCost(&args);
+    costSeconds += CycleTimer::currentSeconds() - startTime;
 
     iter++;
   }
+
+  // Print after convergence to keep console I/O out of the iteration timings.
+  const double stageSeconds = assignmentSeconds + centroidSeconds + costSeconds;
+  const double percentScale = stageSeconds > 0.0 ? 100.0 / stageSeconds : 0.0;
+  const double averageScale = iter > 0 ? 1000.0 / iter : 0.0;
+  printf("[Stage Timing]: %d iterations; percentages are of the three stages\n", iter);
+  printf("[computeAssignments]: %.3f ms total, %.3f ms/iteration, %.2f%%\n",
+         assignmentSeconds * 1000.0, assignmentSeconds * averageScale,
+         assignmentSeconds * percentScale);
+  printf("[computeCentroids]: %.3f ms total, %.3f ms/iteration, %.2f%%\n",
+         centroidSeconds * 1000.0, centroidSeconds * averageScale,
+         centroidSeconds * percentScale);
+  printf("[computeCost]: %.3f ms total, %.3f ms/iteration, %.2f%%\n",
+         costSeconds * 1000.0, costSeconds * averageScale,
+         costSeconds * percentScale);
 
   delete[] currCost;
   delete[] prevCost;

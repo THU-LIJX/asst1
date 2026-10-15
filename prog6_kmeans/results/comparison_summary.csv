@@ -1,0 +1,3 @@
+variant,runs,iterations,assignments_ms_q25,assignments_ms_median,assignments_ms_q75,centroids_ms_q25,centroids_ms_median,centroids_ms_q75,cost_ms_q25,cost_ms_median,cost_ms_q75,total_ms_q25,total_ms_median,total_ms_q75
+original,5,50,7885.326,7916.297,7978.075,836.367,848.565,852.248,2009.993,2029.478,2046.177,10780.086,10807.227,10822.242
+current,5,50,614.689,703.664,750.788,601.279,627.561,639.492,607.614,675.012,708.389,1821.957,2006.252,2098.684

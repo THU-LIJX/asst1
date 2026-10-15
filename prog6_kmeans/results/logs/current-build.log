@@ -1,0 +1,8 @@
+/bin/mkdir -p objs/
+clang++ main.cpp -I../common -Iobjs/ -O3 -std=c++11 -Wall -c -o objs/main.o
+ispc -O3 --target=neon-i32x4 --arch=aarch64 --pic --opt=disable-fma assignments.ispc -o objs/assignments_ispc.o -h objs/assignments_ispc.h
+clang++ utils.cpp -I../common -Iobjs/ -O3 -std=c++11 -Wall -c -o objs/utils.o
+clang++ ../common/ppm.cpp -I../common -Iobjs/ -O3 -std=c++11 -Wall -c -o objs/ppm.o
+clang++ ../common/tasksys.cpp -I../common -Iobjs/ -O3 -std=c++11 -Wall -c -o objs/tasksys.o
+clang++ kmeansThread.cpp -I../common -Iobjs/ -O3 -std=c++11 -Wall -c -o objs/kmeansThread.o
+clang++ -I../common -Iobjs/ -O3 -std=c++11 -Wall -o kmeans objs/main.o objs/kmeansThread.o objs/assignments_ispc.o objs/utils.o objs/ppm.o objs/tasksys.o -lm -lpthread

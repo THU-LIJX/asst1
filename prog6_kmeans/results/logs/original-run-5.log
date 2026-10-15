@@ -1,0 +1,7 @@
+Reading data.dat...
+Running K-means with: M=1000000, N=100, K=3, epsilon=0.100000
+[Stage Timing]: 50 iterations; percentages are of the three stages
+[computeAssignments]: 7885.326 ms total, 157.707 ms/iteration, 73.15%
+[computeCentroids]: 848.565 ms total, 16.971 ms/iteration, 7.87%
+[computeCost]: 2046.177 ms total, 40.924 ms/iteration, 18.98%
+[Total Time]: 10780.086 ms
