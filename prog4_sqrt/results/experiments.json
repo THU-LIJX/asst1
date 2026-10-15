@@ -1,0 +1,295 @@
+{
+  "status": "complete",
+  "started_at": "2026-10-15T11:11:47.598115+08:00",
+  "size": 20000000,
+  "repeats": 10,
+  "input_seed": 1,
+  "ordering_seed": 7,
+  "internal_trials": 3,
+  "configurations": [
+    {
+      "name": "random",
+      "mode": "random",
+      "value": null
+    },
+    {
+      "name": "user",
+      "mode": "user",
+      "value": null
+    },
+    {
+      "name": "uniform_01",
+      "mode": "uniform",
+      "value": "0.1"
+    },
+    {
+      "name": "uniform_near3",
+      "mode": "uniform",
+      "value": "2.99999976"
+    },
+    {
+      "name": "uniform_tiny",
+      "mode": "uniform",
+      "value": "1e-30"
+    },
+    {
+      "name": "divergent_01",
+      "mode": "divergent",
+      "value": "0.1"
+    },
+    {
+      "name": "divergent_299",
+      "mode": "divergent",
+      "value": "2.99"
+    }
+  ],
+  "invocation": "prog4_sqrt/benchmark.py",
+  "commands": [
+    {
+      "config": "random",
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input random --size 20000000 --seed 1"
+    },
+    {
+      "config": "user",
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input user --size 20000000 --seed 1"
+    },
+    {
+      "config": "uniform_01",
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --size 20000000 --seed 1 --value 0.1"
+    },
+    {
+      "config": "uniform_near3",
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --size 20000000 --seed 1 --value 2.99999976"
+    },
+    {
+      "config": "uniform_tiny",
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --size 20000000 --seed 1 --value 1e-30"
+    },
+    {
+      "config": "divergent_01",
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input divergent --size 20000000 --seed 1 --value 0.1"
+    },
+    {
+      "config": "divergent_299",
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input divergent --size 20000000 --seed 1 --value 2.99"
+    }
+  ],
+  "checks": [
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input random --size 1 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input random --size 7 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input random --size 8 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input random --size 9 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input random --size 63 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input random --size 64 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input random --size 65 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input random --size 1003 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input user --size 1 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input user --size 7 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input user --size 8 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input user --size 9 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input user --size 63 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input user --size 64 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input user --size 65 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input user --size 1003 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --size 1 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --size 7 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --size 8 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --size 9 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --size 63 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --size 64 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --size 65 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --size 1003 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input divergent --size 1 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input divergent --size 7 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input divergent --size 8 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input divergent --size 9 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input divergent --size 63 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input divergent --size 64 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input divergent --size 65 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input divergent --size 1003 --seed 1",
+      "status": "passed"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --size 0",
+      "status": "rejected_as_expected"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --size -1",
+      "status": "rejected_as_expected"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input bad",
+      "status": "rejected_as_expected"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --value 3",
+      "status": "rejected_as_expected"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --value 0",
+      "status": "rejected_as_expected"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input uniform --value nan",
+      "status": "rejected_as_expected"
+    },
+    {
+      "command": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt --input random --value 2",
+      "status": "rejected_as_expected"
+    }
+  ],
+  "environment": {
+    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+    "architecture": "arm64",
+    "python": "3.13.1 (main, Dec  3 2024, 17:59:52) [Clang 16.0.0 (clang-1600.0.26.4)]",
+    "clang": "Apple clang version 16.0.0 (clang-1600.0.26.4)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "ispc": "Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.31.0 (build commit  @ 20260625, LLVM 23.1.3)",
+    "make": "GNU Make 3.81\nCopyright (C) 2006  Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.\nThere is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A\nPARTICULAR PURPOSE.\n\nThis program built for i386-apple-darwin11.3.0",
+    "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=22282339)\t100%; charged; 0:00 remaining present: true",
+    "power_settings": "Battery Power:\n Sleep On Power Button 1\n lowpowermode         0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         60\n womp                 0\n networkoversleep     0\n sleep                1\n lessbright           1\n tcpkeepalive         1\n disksleep            10\nAC Power:\n Sleep On Power Button 1\n lowpowermode         0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         60\n womp                 1\n networkoversleep     0\n sleep                1\n tcpkeepalive         1\n disksleep            10",
+    "hardware": {
+      "machdep.cpu.brand_string": "Apple M3",
+      "hw.physicalcpu": "8",
+      "hw.logicalcpu": "8",
+      "hw.memsize": "17179869184",
+      "hw.perflevel0.physicalcpu": "4",
+      "hw.perflevel1.physicalcpu": "4"
+    },
+    "power_at_end": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=22282339)\t100%; charged; 0:00 remaining present: true"
+  },
+  "source": {
+    "commit": "cff07abf97dfbffc4f574a9e2185af7d5db0ae74",
+    "status": "M prog4_sqrt/main.cpp\n M prog4_sqrt/sqrt.ispc\n?? prog4_sqrt/benchmark.py",
+    "diff": "diff --git a/prog4_sqrt/main.cpp b/prog4_sqrt/main.cpp\nindex 476d081..b26e6d5 100644\n--- a/prog4_sqrt/main.cpp\n+++ b/prog4_sqrt/main.cpp\n@@ -1,103 +1,160 @@\n-#include <stdio.h>\n #include <algorithm>\n-#include <pthread.h>\n-#include <math.h>\n+#include <cerrno>\n+#include <climits>\n+#include <cmath>\n+#include <cstdio>\n+#include <cstdlib>\n+#include <cstring>\n+#include <exception>\n+#include <getopt.h>\n+#include <limits>\n+#include <vector>\n \n #include \"CycleTimer.h\"\n #include \"sqrt_ispc.h\"\n \n-using namespace ispc;\n-\n extern void sqrtSerial(int N, float startGuess, float* values, float* output);\n \n-static void verifyResult(int N, float* result, float* gold) {\n-    for (int i=0; i<N; i++) {\n-        if (fabs(result[i] - gold[i]) > 1e-4) {\n-            printf(\"Error: [%d] Got %f expected %f\\n\", i, result[i], gold[i]);\n-        }\n-    }\n+static void usage(const char* program) {\n+    std::printf(\"Usage: %s [--input random|user|uniform|divergent] [--value X] [--size N] [--seed S]\\n\", program);\n+    std::printf(\"Defaults: random input, N=20000000, seed=1, initial guess=1, three internal trials.\\n\");\n+    std::printf(\"--value applies to uniform/divergent inputs and must be finite and strictly between 0 and 3.\\n\");\n }\n \n-int main() {\n-\n-    const unsigned int N = 20 * 1000 * 1000;\n-    const float initialGuess = 1.0f;\n-\n-    float* values = new float[N];\n-    float* output = new float[N];\n-    float* gold = new float[N];\n+static bool parseUnsigned(const char* text, unsigned long long maximum, unsigned long long& value) {\n+    char* end = nullptr;\n+    errno = 0;\n+    value = std::strtoull(text, &end, 10);\n+    return text[0] != '-' && end != text && *end == '\\0' && errno == 0 && value <= maximum;\n+}\n \n-    for (unsigned int i=0; i<N; i++)\n-    {\n-        // TODO: CS149 students.  Attempt to change the values in the\n-        // array here to meet the instructions in the handout: we want\n-        // to you generate best and worse-case speedups\n-        \n-        // starter code populates array with random input values\n-        values[i] = .001f + 2.998f * static_cast<float>(rand()) / RAND_MAX;\n+static bool verifyResult(int N, const float* result, const float* gold, const char* label) {\n+    for (int i = 0; i < N; ++i) {\n+        const float error = std::fabs(result[i] - gold[i]);\n+        // Relative validation also catches incorrect zeros for tiny positive inputs.\n+        if (!std::isfinite(result[i]) || error > 1e-4f || error > 1e-5f * std::fabs(gold[i])) {\n+            std::fprintf(stderr, \"Error: %s [%d] Got %.9g expected %.9g\\n\", label, i, result[i], gold[i]);\n+            return false;\n+        }\n     }\n+    return true;\n+}\n \n-    // generate a gold version to check results\n-    for (unsigned int i=0; i<N; i++)\n-        gold[i] = sqrt(values[i]);\n-\n-    //\n-    // And run the serial implementation 3 times, again reporting the\n-    // minimum time.\n-    //\n-    double minSerial = 1e30;\n-    for (int i = 0; i < 3; ++i) {\n-        double startTime = CycleTimer::currentSeconds();\n-        sqrtSerial(N, initialGuess, values, output);\n-        double endTime = CycleTimer::currentSeconds();\n-        minSerial = std::min(minSerial, endTime - startTime);\n+template <typename Kernel>\n+static bool measureKernel(const char* label, Kernel kernel, int N, float initialGuess,\n+                          float* values, float* output, const float* gold, double& minimum) {\n+    minimum = std::numeric_limits<double>::infinity();\n+    for (int trial = 0; trial < 3; ++trial) {\n+        // A sentinel catches omitted elements even when the previous kernel was correct.\n+        std::fill(output, output + N, std::numeric_limits<float>::quiet_NaN());\n+        const double start = CycleTimer::currentSeconds();\n+        kernel(N, initialGuess, values, output);\n+        const double end = CycleTimer::currentSeconds();\n+        if (!verifyResult(N, output, gold, label))\n+            return false;\n+        minimum = std::min(minimum, end - start);\n     }\n+    std::printf(\"[%s]:\\t[%.6f] ms\\n\", label, minimum * 1000);\n+    std::printf(\"VERIFICATION %s passed trials=3\\n\", label);\n+    return true;\n+}\n \n-    printf(\"[sqrt serial]:\\t\\t[%.3f] ms\\n\", minSerial * 1000);\n-\n-    verifyResult(N, output, gold);\n-\n-    //\n-    // Compute the image using the ispc implementation; report the minimum\n-    // time of three runs.\n-    //\n-    double minISPC = 1e30;\n-    for (int i = 0; i < 3; ++i) {\n-        double startTime = CycleTimer::currentSeconds();\n-        sqrt_ispc(N, initialGuess, values, output);\n-        double endTime = CycleTimer::currentSeconds();\n-        minISPC = std::min(minISPC, endTime - startTime);\n+int main(int argc, char** argv) {\n+    int N = 20 * 1000 * 1000;\n+    const float initialGuess = 1.0f;\n+    unsigned int seed = 1;\n+    const char* input = \"random\";\n+    float value = 2.99999976f;\n+    bool valueSpecified = false;\n+    const option options[] = {\n+        {\"input\", required_argument, nullptr, 'i'},\n+        {\"value\", required_argument, nullptr, 'v'},\n+        {\"size\", required_argument, nullptr, 's'},\n+        {\"seed\", required_argument, nullptr, 'r'},\n+        {\"help\", no_argument, nullptr, 'h'},\n+        {nullptr, 0, nullptr, 0}\n+    };\n+    int optionValue;\n+    while ((optionValue = getopt_long(argc, argv, \"i:v:s:r:h\", options, nullptr)) != -1) {\n+        unsigned long long number;\n+        switch (optionValue) {\n+        case 'i': input = optarg; break;\n+        case 'v': {\n+            char* end = nullptr;\n+            errno = 0;\n+            value = std::strtof(optarg, &end);\n+            if (end == optarg || *end != '\\0' || errno != 0 || !std::isfinite(value) || value <= 0 || value >= 3) {\n+                std::fprintf(stderr, \"Error: --value must be finite and strictly between 0 and 3\\n\");\n+                return 1;\n+            }\n+            valueSpecified = true;\n+            break;\n+        }\n+        case 's':\n+            if (!parseUnsigned(optarg, INT_MAX, number) || number == 0) {\n+                std::fprintf(stderr, \"Error: --size must be 1..INT_MAX\\n\");\n+                return 1;\n+            }\n+            N = static_cast<int>(number);\n+            break;\n+        case 'r':\n+            if (!parseUnsigned(optarg, UINT_MAX, number)) {\n+                std::fprintf(stderr, \"Error: --seed must be 0..UINT_MAX\\n\");\n+                return 1;\n+            }\n+            seed = static_cast<unsigned int>(number);\n+            break;\n+        case 'h': usage(argv[0]); return 0;\n+        default: usage(argv[0]); return 1;\n+        }\n     }\n-\n-    printf(\"[sqrt ispc]:\\t\\t[%.3f] ms\\n\", minISPC * 1000);\n-\n-    verifyResult(N, output, gold);\n-\n-    // Clear out the buffer\n-    for (unsigned int i = 0; i < N; ++i)\n-        output[i] = 0;\n-\n-    //\n-    // Tasking version of the ISPC code\n-    //\n-    double minTaskISPC = 1e30;\n-    for (int i = 0; i < 3; ++i) {\n-        double startTime = CycleTimer::currentSeconds();\n-        sqrt_ispc_withtasks(N, initialGuess, values, output);\n-        double endTime = CycleTimer::currentSeconds();\n-        minTaskISPC = std::min(minTaskISPC, endTime - startTime);\n+    const bool randomInput = std::strcmp(input, \"random\") == 0;\n+    const bool userInput = std::strcmp(input, \"user\") == 0;\n+    const bool uniformInput = std::strcmp(input, \"uniform\") == 0;\n+    const bool divergentInput = std::strcmp(input, \"divergent\") == 0;\n+    if (optind != argc || !(randomInput || userInput || uniformInput || divergentInput)\n+        || (valueSpecified && !(uniformInput || divergentInput))) {\n+        usage(argv[0]);\n+        return 1;\n     }\n \n-    printf(\"[sqrt task ispc]:\\t[%.3f] ms\\n\", minTaskISPC * 1000);\n-\n-    verifyResult(N, output, gold);\n-\n-    printf(\"\\t\\t\\t\\t(%.2fx speedup from ISPC)\\n\", minSerial/minISPC);\n-    printf(\"\\t\\t\\t\\t(%.2fx speedup from task ISPC)\\n\", minSerial/minTaskISPC);\n-\n-    delete [] values;\n-    delete [] output;\n-    delete [] gold;\n+    try {\n+        const int gangWidth = ispc::sqrt_ispc_program_count();\n+        if (gangWidth <= 0) {\n+            std::fprintf(stderr, \"Error: Invalid ISPC program count\\n\");\n+            return 1;\n+        }\n+        const int span = (N - 1) / 64 + 1;\n+        const int taskCount = (N - 1) / span + 1;\n+        std::printf(\"SQRT_CONFIG {\\\"input\\\":\\\"%s\\\",\\\"size\\\":%d,\\\"seed\\\":%u,\"\n+                    \"\\\"value\\\":%.9g,\\\"initial_guess\\\":1,\\\"internal_repeats\\\":3,\"\n+                    \"\\\"gang_width\\\":%d,\\\"task_count\\\":%d}\\n\",\n+                    input, N, seed, value, gangWidth, taskCount);\n+        std::vector<float> values(N), output(N), gold(N);\n+        std::srand(seed);\n+        for (int i = 0; i < N; ++i) {\n+            if (randomInput)\n+                values[i] = .001f + 2.998f * static_cast<float>(std::rand()) / RAND_MAX;\n+            else if (userInput)\n+                values[i] = 2.0f + 0.1f * static_cast<float>(std::rand()) / RAND_MAX;\n+            else if (uniformInput)\n+                values[i] = value;\n+            else\n+                values[i] = i % gangWidth == 0 ? value : 1.0f;\n+            gold[i] = std::sqrt(values[i]);\n+        }\n \n+        double serial, vector, tasks;\n+        if (!measureKernel(\"sqrt serial\", sqrtSerial, N, initialGuess, values.data(), output.data(), gold.data(), serial)\n+            || !measureKernel(\"sqrt ispc\", ispc::sqrt_ispc, N, initialGuess, values.data(), output.data(), gold.data(), vector)\n+            || !measureKernel(\"sqrt task ispc\", ispc::sqrt_ispc_withtasks, N, initialGuess, values.data(), output.data(), gold.data(), tasks))\n+            return 1;\n+        std::printf(\"(%.6fx speedup from ISPC)\\n\", serial / vector);\n+        std::printf(\"(%.6fx speedup from task ISPC)\\n\", serial / tasks);\n+        std::printf(\"(%.6fx multicore gain over single-core ISPC)\\n\", vector / tasks);\n+    } catch (const std::exception& error) {\n+        std::fprintf(stderr, \"Error: %s\\n\", error.what());\n+        return 1;\n+    }\n     return 0;\n }\ndiff --git a/prog4_sqrt/sqrt.ispc b/prog4_sqrt/sqrt.ispc\nindex af47bf6..e40dc2f 100644\n--- a/prog4_sqrt/sqrt.ispc\n+++ b/prog4_sqrt/sqrt.ispc\n@@ -1,6 +1,10 @@\n \n static const float kThreshold = 0.00001f; \n \n+export uniform int sqrt_ispc_program_count() {\n+    return programCount;\n+}\n+\n export void sqrt_ispc(uniform int N,\n                       uniform float initialGuess,\n                       uniform float values[],\n@@ -31,7 +35,7 @@ task void sqrt_ispc_task(uniform int N,\n {\n \n     uniform int indexStart = taskIndex * span;\n-    uniform int indexEnd = min(N, indexStart + span);\n+    uniform int indexEnd = indexStart + min(span, N - indexStart);\n     \n     foreach (i = indexStart ... indexEnd) {\n \n@@ -56,7 +60,8 @@ export void sqrt_ispc_withtasks(uniform int N,\n                                 uniform float output[])\n {\n \n-    uniform int span = N / 64;  // 64 tasks\n+    // Ceiling division covers tails and keeps small inputs from creating a zero span.\n+    uniform int span = (N - 1) / 64 + 1;\n \n-    launch[N/span] sqrt_ispc_task(N, span, initialGuess, values, output);\n+    launch[(N-1)/span+1] sqrt_ispc_task(N, span, initialGuess, values, output);\n }",
+    "sha256": {
+      "prog4_sqrt/main.cpp": "bd647bac3c9b45345947c3a9c91ee42456a93b233f72c55afb556e13f902b7b8",
+      "prog4_sqrt/sqrt.ispc": "0b56de5e13b404c4576c110913d7d552e3697f9fe1ab72afa5cfcead1134985b",
+      "prog4_sqrt/sqrtSerial.cpp": "08408c32b23ef1ed112f8804aeb1e2cda2c0c71dbae507fc1449407f69315c19",
+      "prog4_sqrt/Makefile": "ff1f4a6554f75290e3eca1b4f80185b51b957308ea6dd4860c13d45b0f5b9a42",
+      "prog4_sqrt/benchmark.py": "feb9052c6c43931b65f6f004c375d35d56d65e89cd4a189efed5e1727549c7b0",
+      "common/CycleTimer.h": "e2f969bc61d0b94b55dc57cb6bb91ab67bbfd44449e1dd7b17f147b6fd7d31a6",
+      "common/tasksys.cpp": "c36a043019aa8a4dd493056d58dc9160498a0a00b622c04f5519a0353589946d"
+    }
+  },
+  "build": {
+    "command": "make -B",
+    "cxxflags": "-I../common -Iobjs/ -O3 -std=c++11 -Wall",
+    "ispcflags": "-O3 --target=neon-i32x8 --arch=aarch64 --pic"
+  },
+  "executable": "/Users/shin/Desktop/asst1/prog4_sqrt/sqrt: Mach-O 64-bit executable arm64",
+  "pilot": {
+    "size": 1000000,
+    "configurations": 24,
+    "runs_per_config": 1
+  },
+  "finished_at": "2026-10-15T11:20:12.451330+08:00",
+  "valid_runs": 70,
+  "independent_audit": {
+    "formal_runs": 70,
+    "summary_rows": 7,
+    "small_tail_checks": 32,
+    "invalid_inputs_rejected": 7,
+    "warmups": 7,
+    "pilot_runs": 24,
+    "formal_kernel_trials_verified": 630,
+    "all_csv_statistics_recomputed": true,
+    "log_csv_report_consistent": true,
+    "source_hashes_match": true,
+    "internal_links_valid": true,
+    "report_postprocessing": "Chinese wording, machine description, explicit Q2 comparison; no source or measurement changes."
+  }
+}

@@ -1,0 +1,3 @@
+Usage: /Users/shin/Desktop/asst1/prog4_sqrt/sqrt [--input random|user|uniform|divergent] [--value X] [--size N] [--seed S]
+Defaults: random input, N=20000000, seed=1, initial guess=1, three internal trials.
+--value applies to uniform/divergent inputs and must be finite and strictly between 0 and 3.

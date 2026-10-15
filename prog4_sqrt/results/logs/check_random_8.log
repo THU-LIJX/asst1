@@ -1,0 +1,10 @@
+SQRT_CONFIG {"input":"random","size":8,"seed":1,"value":2.99999976,"initial_guess":1,"internal_repeats":3,"gang_width":8,"task_count":8}
+[sqrt serial]:	[0.000125] ms
+VERIFICATION sqrt serial passed trials=3
+[sqrt ispc]:	[0.000041] ms
+VERIFICATION sqrt ispc passed trials=3
+[sqrt task ispc]:	[0.004667] ms
+VERIFICATION sqrt task ispc passed trials=3
+(3.048780x speedup from ISPC)
+(0.026784x speedup from task ISPC)
+(0.008785x multicore gain over single-core ISPC)

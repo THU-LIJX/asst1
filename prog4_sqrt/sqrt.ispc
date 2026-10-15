@@ -1,6 +1,10 @@
 
 static const float kThreshold = 0.00001f; 
 
+export uniform int sqrt_ispc_program_count() {
+    return programCount;
+}
+
 export void sqrt_ispc(uniform int N,
                       uniform float initialGuess,
                       uniform float values[],
@@ -31,7 +35,7 @@ task void sqrt_ispc_task(uniform int N,
 {
 
     uniform int indexStart = taskIndex * span;
-    uniform int indexEnd = min(N, indexStart + span);
+    uniform int indexEnd = indexStart + min(span, N - indexStart);
     
     foreach (i = indexStart ... indexEnd) {
 
@@ -56,7 +60,8 @@ export void sqrt_ispc_withtasks(uniform int N,
                                 uniform float output[])
 {
 
-    uniform int span = N / 64;  // 64 tasks
+    // Ceiling division covers tails and keeps small inputs from creating a zero span.
+    uniform int span = (N - 1) / 64 + 1;
 
-    launch[N/span] sqrt_ispc_task(N, span, initialGuess, values, output);
+    launch[(N-1)/span+1] sqrt_ispc_task(N, span, initialGuess, values, output);
 }

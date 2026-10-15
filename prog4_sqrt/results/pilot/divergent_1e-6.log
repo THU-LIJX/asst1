@@ -1,0 +1,10 @@
+SQRT_CONFIG {"input":"divergent","size":1000000,"seed":1,"value":9.99999997e-07,"initial_guess":1,"internal_repeats":3,"gang_width":8,"task_count":64}
+[sqrt serial]:	[6.138542] ms
+VERIFICATION sqrt serial passed trials=3
+[sqrt ispc]:	[12.190250] ms
+VERIFICATION sqrt ispc passed trials=3
+[sqrt task ispc]:	[2.627416] ms
+VERIFICATION sqrt task ispc passed trials=3
+(0.503562x speedup from ISPC)
+(2.336342x speedup from task ISPC)
+(4.639635x multicore gain over single-core ISPC)
